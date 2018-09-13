@@ -16,7 +16,7 @@ TUsuario = function(chofer){
 		$.post(server + 'clogin', {
 			"usuario": datos.usuario,
 			"pass": datos.pass, 
-			"action": 'logintransportista',
+			"action": 'loginclientes',
 			"movil": 'true'
 		}, function(resp){
 			if (resp.band == false)

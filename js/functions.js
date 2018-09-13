@@ -1,4 +1,4 @@
-server = "http://localhost/crm_gestor/";
+server = "http://192.168.2.2/crm_gestor/";
 //server = "http://10.0.0.5/fleteFacil-web/";
 //server = "http://172.10.22.5/fleteFacil-web/";
 //server = "http://192.168.1.69/fleteFacil-web/";
