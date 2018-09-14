@@ -1,5 +1,5 @@
 function callRegistro(){
-	$("#modulo").html(plantillas["registro"]);
+	$("[modulo]").html(plantillas["registro"]);
 	setPanel();
 	
 	$("#frmRegistro").validate({

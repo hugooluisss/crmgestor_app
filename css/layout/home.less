@@ -1,0 +1,66 @@
+body[layout="home"]{
+	#menuPrincipal{
+		//background: url(@bgNav);
+		background: @color2;
+		background-position: center bottom;
+		background-repeat: no-repeat;
+		background-size: cover;
+		color: white;
+		
+		.logo{
+			height: 35px;
+		}
+		
+		a{
+			color: white;
+		}
+		
+		button{
+			color: white;
+			span{
+				color: white;
+			}
+			
+			border: none;
+		}
+		
+		.navbar-collapse{
+		}
+	}
+	
+	#modulo{
+		padding-top: 60px;
+		background: @grisClaro;
+		height: 100%;
+	}
+	
+	#pie{
+		position: fixed;
+		bottom: 0px;
+		width: 100%;
+		height: 60px;
+		border-top: 1px solid @grisClaro;
+		color: @rojo;
+		padding-top: 10px;
+		background: @bgPie;
+		
+		.row{
+			justify-content: center;
+			.boton{
+				text-align: center;
+				margin: auto;
+				i{
+					margin: auto;
+				}
+				
+				span{
+					font-size: 10px;
+					display: block;
+					margin: auto;
+				}
+			}
+		}
+	}
+	
+	@import "modulos/home.less";
+}

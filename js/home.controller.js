@@ -1,20 +1,9 @@
 function callHome(){
 	console.info("Llalmando a home");
-	$("#modulo").html(plantillas["home"]);
+	$("#modulo").attr("modulo", "home").html(plantillas["home"]);
 	setPanel();
 	console.info("Carga de home finalizada");
-	
-	objUsuario.getData({
-		"id": objUsuario.idTransportista,
-		fn: {
-			after: function(resp){
-				if(resp.datos.situacion == 1)
-					$("#dvEnRuta").show();
-			}
-		}
-	})
-	
-	
+		
 	$("#btnSalir").click(function(){
 		alertify.confirm("¿Seguro?", function(e){
     		if(e) {

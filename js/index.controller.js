@@ -1,4 +1,4 @@
 function callIndex(){
-	$("#modulo").html(plantillas["index"]);
+	$("[modulo]").html(plantillas["index"]);
 	setPanel();
 }

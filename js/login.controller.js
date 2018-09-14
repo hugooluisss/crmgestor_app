@@ -1,5 +1,5 @@
 function callLogin(){
-	$("#modulo").html(plantillas["login"]);
+	$("[modulo]").html(plantillas["login"]);
 	setPanel();
 	
 	$("#lnkLostPass").click(function(){

@@ -35,7 +35,7 @@ var app = {
 	// The scope of 'this' is the event. In order to call the 'receivedEvent'
 	// function, we must explicitly call 'app.receivedEvent(...);'
 	onDeviceReady: function() {
-		activarNotificaciones();
+		//activarNotificaciones();
 	}
 };
 
@@ -48,17 +48,8 @@ $(document).ready(function(){
 		
 	
 	plantillas["home"] = "";
-	plantillas["ofertas"] = "";
-	plantillas["oferta"] = "";
-	plantillas["detalleOferta"] = "";
-	plantillas["sinOfertas"] = "";
-	plantillas["postuladas"] = "";
-	plantillas["detalleOfertaPostulada"] = "";
-	plantillas["adjudicadas"] = "";
-	plantillas["detalleOfertaAdjudicada"] = "";
-	plantillas["finalizadas"] = "";
-	plantillas["ofertaFinalizada"] = "";
-	plantillas["detalleOfertaFinalizada"] = "";
+	setPanel();
+	
 	getPlantillas(function(){
 		callHome();
 	});
@@ -70,18 +61,6 @@ function callPanel(panel){
 	switch(panel){
 		case 'home':
 			callHome();
-		break;
-		case 'ofertas':
-			callOfertas();
-		break;
-		case 'postuladas':
-			callPostuladas();
-		break;
-		case 'adjudicadas':
-			callAdjudicadas();
-		break;
-		case 'finalizadas':
-			callFinalizadas();
 		break;
 		default:
 			console.info("Panel no encontrado");
