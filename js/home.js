@@ -48,6 +48,9 @@ $(document).ready(function(){
 		
 	
 	plantillas["home"] = "";
+	plantillas["autos"] = "";
+	plantillas["auto"] = "";
+	plantillas["detalleAuto"] = "";
 	setPanel();
 	
 	getPlantillas(function(){
@@ -61,6 +64,9 @@ function callPanel(panel){
 	switch(panel){
 		case 'home':
 			callHome();
+		break;
+		case 'autos':
+			callAutos();
 		break;
 		default:
 			console.info("Panel no encontrado");

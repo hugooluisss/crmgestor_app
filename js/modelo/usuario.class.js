@@ -22,8 +22,8 @@ TUsuario = function(chofer){
 			if (resp.band == false)
 				console.log(resp.mensaje);
 			else{
-				window.localStorage.setItem("session_crm", resp.datos.usuario);
-				self.idTransportista = resp.datos.idTransportista;
+				window.localStorage.setItem("session_crm", resp.datos.idCliente);
+				self.idUsuario = resp.datos.idCliente;
 			}
 				
 			if (datos.fn.after !== undefined)

@@ -128,8 +128,11 @@ function setDatos(plantilla, datos){
 	});
 }
 
-function setPanel(){
-	$("[showpanel]").click(function(){
+function setPanel(el){
+	if (el == undefined)
+		el = $("body");
+		
+	el.find("[showpanel]").click(function(){
 		callPanel($(this).attr("showpanel"));
 	});
 }

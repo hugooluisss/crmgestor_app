@@ -1,7 +1,7 @@
 function callHome(){
 	console.info("Llalmando a home");
 	$("#modulo").attr("modulo", "home").html(plantillas["home"]);
-	setPanel();
+	setPanel($("#modulo"));
 	console.info("Carga de home finalizada");
 		
 	$("#btnSalir").click(function(){
