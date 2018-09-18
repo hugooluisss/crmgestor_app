@@ -51,6 +51,7 @@ $(document).ready(function(){
 	plantillas["autos"] = "";
 	plantillas["auto"] = "";
 	plantillas["detalleAuto"] = "";
+	plantillas["tramite"] = "";
 	setPanel();
 	
 	getPlantillas(function(){
