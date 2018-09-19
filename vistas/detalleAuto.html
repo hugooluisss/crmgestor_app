@@ -1,3 +1,5 @@
+<script type="text/javascript" data-conekta-public-key="key_FLvB3CMbt6MfrgTs5y7nvxw" src="librerias/conekta/conekta.js"></script>
+
 <button showpanel="autos" class="btn btn-default"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Regresar</button>
 <br />
 
@@ -83,50 +85,37 @@
 
 
 
-<form onsubmit="javascript: return false" method="post" id="frmPago" name="frmPago"action="">
+<form onsubmit="javascript: return false" method="post" id="frmPago" name="frmPago" action="">
 	<div id="winPago" class="modal" tabindex="-1" role="dialog">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title">Cobro del trámite</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
 				<div class="modal-body">
-					<script type="text/javascript" data-conekta-public-key="key_bqFat52tN6nohmtcU7AFYwg" src="librerias/conekta/conekta.js"></script>
+					<script type="text/javascript" src="https://cdn.conekta.io/js/latest/conekta.js"></script>
 					
-					<div class="form-group">
-						<label for="email">Nombre del tarjetahabiente</label>
-						<input type="text" class="form-control name" data-conekta="card[name]"/>
+					<div class="row">
+						<div class="col-12 text-center">
+							<img src="img/conekta_logo.png" />
+						</div>
+					</div>
+					<br /><br />
+					<div class="form-group row">
+						<label for="email" class="col-12">Nombre del tarjetahabiente</label>
+						<div class="col-12">
+							<input type="text" class="form-control name col-12" data-conekta="card[name]"/>
+						</div>
 					</div>
 					
-					<div class="form-group">
-						<label for="email">Nombre del tarjetahabiente</label>
-						<input type="text" class="form-control name" data-conekta="card[name]"/>
-					</div>
-				
 					<div class="form-group row">
+						<label for="email" class="col-12">Número de tarjeta</label>
 						<div class="col-12">
-					    	
+							<input type="text" class="form-control number col-12" data-conekta="card[number]" placeholder=""/>
 						</div>
 					</div>
+					
 					<div class="form-group row">
-						<div class="col-12">
-							<input type="text" class="form-control number" data-conekta="card[number]" placeholder="Número de tarjeta"/>
-						</div>
-					</div>
-					<div class="form-group row">
-						<div class="col-4">
-							<input type="text" class="form-control cvc" data-conekta="card[cvc]" placeholder="CVC"/>
-						</div>
-						<label class="control-label col-3">Monto</label>
-						<div class="col-5 text-right" campo="precio"></div>
-					</div>
-					<div class="form-group row">
-						<label class="col-4">Expiración</label>
-						<div class="col-4">
-							<select data-conekta="card[exp_month]" class="form-control col- exp_month">
+						<label for="email" class="col-12">Expira</label>
+						<div class="col-6">
+							<select data-conekta="card[exp_month]" class="form-control exp_month">
 								<option value="01">Enero</option>
 								<option value="02">Febrero</option>
 								<option value="03">Marzo</option>
@@ -141,8 +130,17 @@
 								<option value="12">Diciembre</option>
 							</select>
 						</div>
+						<div class="col-6">
+							<select class="form-control exp_year col-" data-conekta="card[exp_year]"></select>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="email" class="col-12">CVC</label>
 						<div class="col-4">
-							<select class="form-control exp_year" data-conekta="card[exp_year]"></select>
+							<input type="text" class="form-control cvc col-12" data-conekta="card[cvc]" placeholder="CVC"/>
+						</div>
+						<div class="col-5 offset-3 text-center">
+							<img src="img/visa.png" style="width: 100%" />
 						</div>
 					</div>
 					<div class="form-group">

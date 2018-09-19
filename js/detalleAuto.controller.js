@@ -3,6 +3,12 @@ function callDetalleAuto(id){
 	$("#modulo").attr("modulo", "detalleAuto").html(plantillas["detalleAuto"]);
 	setPanel($("#modulo"));
 	
+	var d = new Date();
+	fin = d.getFullYear() + 10;
+	
+	for(anio = d.getFullYear() ; anio < fin ; anio++)
+		$(".exp_year").append($('<option value="' + anio + '">' + anio + '</option>'));
+	
 	$.post(server + "cautomoviles", {
 		"id": id,
 		"action": "getData",
@@ -77,6 +83,7 @@ function callDetalleAuto(id){
 	
 	$("#winTramite").on('show.bs.modal', function(e){
 		var tramite = JSON.parse($(e.relatedTarget).attr("datos"));
+		$("#winTramite").attr("datos", $(e.relatedTarget).attr("datos"));
 		$("#winTramite").find("[campo]").show();
 		
 		setDatos($("#winTramite"), tramite);
@@ -90,5 +97,77 @@ function callDetalleAuto(id){
 			$("#winTramite").find("[campo=documentacion]").hide();
 			
 		$("#winTramite").find("#btnSolicitar").attr("datos", $(e.relatedTarget).attr("datos"));
+	});
+	
+	$("#winPago").on('show.bs.modal', function(e){
+		var tramite = JSON.parse($("#winTramite").attr("datos"));
+		$("#winPago").find("#submitPago").html("Pagar $ " + tramite.precio + " ahora");
+		
+		$(".name").val("hugo Santiago");
+		$(".number").val("4242424242424242");
+		$(".cvc").val("121");
+		$(".exp_month").val("11");
+		$(".exp_year").val("2018");
+	});
+	
+	$("#winPago").find("#submitPago").click(function(){
+		var $form = $("#frmPago");
+		Conekta.setPublicKey(publicConekta);
+		Conekta.setLanguage("es"); 
+		var tramite = JSON.parse($("#winTramite").attr("datos"));
+
+		$("#winPago").find("#submitPago").prop("disabled", true);
+		blockUI("Estamos procesando el pago");
+		Conekta.Token.create($form, function(token){
+			$("#conektaTokenId").val(token.id);
+			
+			$.post(server + 'cpagos', {
+				"token": token.id,
+				"cliente": objUsuario.idUsuario,
+				"tramite": tramite.idTramite,
+				"movil": 1,
+				"action": "addPagoConekta"
+			}, function(resp){
+				$form.find("button").prop("disabled", false);
+				
+				if (resp.band){
+					var orden = new TOrden;
+					orden.add({
+						"cliente": objUsuario.idUsuario,
+						"tramite": tramite.idTramite,
+						"observaciones": "",
+						"action": "add",
+						"fn": {
+							before: function(){
+								$form.find("button").prop("disabled", true);
+							}, after: function(resp){
+								$form.find("button").prop("disabled", false);
+								unBlockUI();
+
+								if (resp.band){
+									mensajes.alert({"titulo": "Registro completo", "mensaje": "Muchas gracias por su pago... iniciaremos el trámite y lo mantendremos informado"});
+									$("#winPago").modal("hide");
+									$("#winTramite").modal("hide");
+									callPanel("home");
+								}else
+									mensajes.alert({"titulo": "Error", "mensaje": "No se pudo procesar el pago"});
+							}
+						}
+					});
+				}else{
+					mensajes.alert({"titulo": "Error", "mensaje": "No pudo ser procesado el pago"});
+					unBlockUI();
+				}
+			}, "json");
+
+		}, function(response) {
+			var $form = $("#frmEnvio");
+			unBlockUI();
+			/* Muestra los errores en la forma */
+			mensajes.alert({"titulo": "Conekta", "mensaje": response.message_to_purchaser});
+			$form.find("button").prop("disabled", false);
+			
+			unBlockUI();
+		});
 	});
 }
