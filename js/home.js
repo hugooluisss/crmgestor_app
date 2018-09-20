@@ -52,6 +52,12 @@ $(document).ready(function(){
 	plantillas["auto"] = "";
 	plantillas["detalleAuto"] = "";
 	plantillas["tramite"] = "";
+	
+	plantillas["ordenes"] = "";
+	plantillas["orden"] = "";
+	plantillas["detalleOrden"] = "";
+	plantillas["documento"] = "";
+	
 	setPanel();
 	
 	getPlantillas(function(){
@@ -68,6 +74,9 @@ function callPanel(panel){
 		break;
 		case 'autos':
 			callAutos();
+		break;
+		case 'ordenes':
+			callOrdenes();
 		break;
 		default:
 			console.info("Panel no encontrado");

@@ -9,6 +9,7 @@ TOrden = function(){
 				"cliente": datos.cliente,
 				"tramite": datos.tramite,
 				"observaciones": datos.observaciones,
+				"carro": datos.carro,
 				"action": "add",
 				"movil": true
 			}, function(data){

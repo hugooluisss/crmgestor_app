@@ -2,6 +2,7 @@ function callDetalleAuto(id){
 	console.info("Llamando a detalle del auto");
 	$("#modulo").attr("modulo", "detalleAuto").html(plantillas["detalleAuto"]);
 	setPanel($("#modulo"));
+	idCarro = id;
 	
 	var d = new Date();
 	fin = d.getFullYear() + 10;
@@ -61,7 +62,7 @@ function callDetalleAuto(id){
 	console.info("Carga del detalle auto finalizada");
 	
 	
-	$.post(server + "listatramites", {
+	$.post(server + "listatramitesapp", {
 		"movil": true,
 		"json": true
 	}, function(tramites){
@@ -135,6 +136,7 @@ function callDetalleAuto(id){
 					orden.add({
 						"cliente": objUsuario.idUsuario,
 						"tramite": tramite.idTramite,
+						"carro": idCarro,
 						"observaciones": "",
 						"action": "add",
 						"fn": {
@@ -145,10 +147,19 @@ function callDetalleAuto(id){
 								unBlockUI();
 
 								if (resp.band){
-									mensajes.alert({"titulo": "Registro completo", "mensaje": "Muchas gracias por su pago... iniciaremos el trámite y lo mantendremos informado"});
 									$("#winPago").modal("hide");
 									$("#winTramite").modal("hide");
-									callPanel("home");
+									
+									if (tramite.cita == 0){
+										callPanel("home");
+										mensajes.alert({"titulo": "Registro completo", "mensaje": "Muchas gracias por su pago..."});
+									}else{
+										$("#winCita").modal();
+										$("#winCita").attr("orden", resp.id);
+										$("#winCita").attr("duracion", tramite.duracion);
+										
+										mensajes.alert({"titulo": "Registro completo", "mensaje": "Necesitamos que reserves una cita"});
+									}
 								}else
 									mensajes.alert({"titulo": "Error", "mensaje": "No se pudo procesar el pago"});
 							}
