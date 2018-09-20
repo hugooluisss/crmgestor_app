@@ -5,7 +5,7 @@
 	<div class="card-block">
 		<div class="row">
 			<div class="col-12">
-				<h5 campo="tramite"></h5>
+				<h5 class="card-title" campo="tramite">Card title</h5>
 				<div campo="descripcion"></div></h5>
 				<br />
 				<small before="Estado: " campo="estado"></small>
@@ -16,7 +16,28 @@
 <br />
 <div class="card">
 	<div class="card-block">
+		<h5 class="card-title">Documentos adjuntos</h5>
 		<div class="row documentos">
+		</div>
+	</div>
+</div>
+
+<br />
+<div class="card">
+	<div class="card-block">
+		<h5 class="card-title">Chat</h5>
+		<div class="row">
+			<div class="col-12">
+				<div id="dvConversacion"></div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-9">
+				<input type="text" id="txtMensaje" class="form-control" />
+			</div>
+			<div class="col-3">
+				<button id="btnSendMsg" class="btn btn-danger btn-block">Enviar</button>
+			</div>
 		</div>
 	</div>
 </div>

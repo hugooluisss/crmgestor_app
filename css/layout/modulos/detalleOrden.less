@@ -1,13 +1,40 @@
 [modulo=detalleOrden]{
 	.documento{
 		img{
-			width: 60%;
-			height: 120px;
+			height: 60px;
 			margin-top: 20px;
 		}
 		
 		[campo=nombre]{
-			font-size: 10px;
+			font-size: 9px;
+			height: 30px;
+		}
+	}
+	
+	#dvConversacion{
+		height: 150px;
+		margin: auto;
+		border: 1px solid @rojo;
+		margin-bottom: 10px;
+		overflow-x: scroll;
+	}
+	
+	#txtMensaje{
+		border: 1px solid @rojo;
+	}
+	
+	#dvConversacion{
+		.mensaje{
+			[campo=fecha]{
+				font-size: 8px;
+			}
+			
+			font-size: 12px;
+			
+			margin-top: 10px;
+			margin-bottom: 10px;
+			
+			background: @grisClaro;
 		}
 	}
 }

@@ -57,6 +57,7 @@ $(document).ready(function(){
 	plantillas["orden"] = "";
 	plantillas["detalleOrden"] = "";
 	plantillas["documento"] = "";
+	plantillas["mensaje"] = "";
 	
 	setPanel();
 	
