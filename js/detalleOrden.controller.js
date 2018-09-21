@@ -6,6 +6,12 @@ function callDetalleOrden(id){
 	var ultimaLectura = undefined;
 	var ciclo;
 	
+	$("#txtFechaCita").datetimepicker({
+		format: "Y-m-d H:i",
+		step: 30
+	});
+
+	
 	$.post(server + "cordenes", {
 		"action": "getData",
 		"id": id,
@@ -18,15 +24,24 @@ function callDetalleOrden(id){
 		if (orden.documentacion.length == 0)
 			$(".documentos").parent().parent().hide();
 		
+		bandDoc = true;
 		for(i in orden.documentacion){
 			doc = $(plantillas["documento"]);
 			objDoc = orden.documentacion[i];
-			console.log(objDoc);
+			
+			doc.find("img").attr("src", server + objDoc.archivo);
 			setDatos(doc, objDoc);
 			$(".documentos").append(doc);
+			
+			bandDoc = bandDoc && objDoc.archivo != '';
 		}
 		
-		$("#btnSendMsg").click(function(){f
+		if (bandDoc && orden.cita == 1)
+			$(".cita").parent().parent().show();
+		else
+			$(".cita").parent().parent().hide();
+		
+		$("#btnSendMsg").click(function(){
 			sendMensaje();
 		});
 		
@@ -38,6 +53,40 @@ function callDetalleOrden(id){
 		getMensajes();
 		
 		ciclo = setInterval(getMensajes, 2000);
+		
+		
+		$("#frmAddCita").validate({
+			debug: true,
+			errorClass: "validateError",
+			rules: {
+				txtFechaCita: {
+					required : true
+				}
+			},
+			wrapper: 'span',
+			submitHandler: function(form){
+				form = $(form);
+				
+				var obj = new TCita;
+				obj.add({
+					orden: idOrden,
+					fecha: form.find("#txtFechaCita").val(),
+					descripcion: form.find("#txtDescripcion").val(),
+					fn: {
+						before: function(){
+							form.find("[type=submit]").prop("disabled", true);
+						}, after: function(resp){
+							form.find("[type=submit]").prop("disabled", false);
+							
+							if(resp.band)
+								mensajes.alert({"titulo": "Datos guardados", mensaje: "Tu cita fue agregada, nuestro gestor te informará si está disponible ese día y hora"});
+							else
+								mensajes.alert({"titulo": "Error", mensaje: "No pudo ser registrada tu cita"});
+						}
+					}
+				});
+			}
+		});
 		
 	}, "json");
 	
@@ -76,7 +125,6 @@ function callDetalleOrden(id){
 			"ultimaConsulta": ultimaLectura,
 			"movil": true
 		}, function(mensajes){
-			console.log(mensajes);
 			for(i in mensajes){
 				mensaje = mensajes[i];
 				ultimaLectura = mensaje.fecha;

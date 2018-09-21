@@ -1,4 +1,7 @@
 body[layout="home"]{
+	background: @grisClaro;
+	@altoPie: 60px;
+	
 	#menuPrincipal{
 		//background: url(@bgNav);
 		background: @color2;
@@ -34,13 +37,16 @@ body[layout="home"]{
 		padding-right: 5px;
 		background: @grisClaro;
 		height: 100%;
+		
+		overflow-y: scroll;
+		overflow-x: hidden;
 	}
 	
 	#pie{
 		position: fixed;
 		bottom: 0px;
 		width: 100%;
-		height: 60px;
+		height: @altoPie;
 		border-top: 1px solid @grisClaro;
 		color: @rojo;
 		padding-top: 10px;
