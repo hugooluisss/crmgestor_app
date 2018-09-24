@@ -35,8 +35,9 @@ function callDetalleOrden(id){
 			
 			doc.find(".btnCamara").attr("documento", doc.nombre);
 			doc.find(".btnCamara").click(function(){
+				var el = $(this);
 				navigator.camera.getPicture(function(imageURI){
-					agregarFoto(imageURI);
+					agregarFoto(imageURI, el);
 				}, function(message){
 					alertify.error("Ocurrio un error al obtener la imagen");
 				}, {
@@ -53,8 +54,9 @@ function callDetalleOrden(id){
 			
 			doc.find(".btnGaleria").attr("documento", doc.nombre);
 			doc.find(".btnGaleria").click(function(){
+				var el = $(this);
 				navigator.camera.getPicture(function(imageURI){
-					agregarFoto(imageURI);
+					agregarFoto(imageURI, el);
 				}, function(message){
 					alertify.error("Ocurrio un error al obtener la imagen");
 				}, {
@@ -180,9 +182,21 @@ function callDetalleOrden(id){
 				pl.addClass(mensaje.emisor == 'C'?"":"offset-1");
 				
 				$("#dvConversacion").append(pl);
-				
 				$("#dvConversacion").animate({ scrollTop: $('#dvConversacion')[0].scrollHeight}, 10);
 			}
 		}, "json");
+	}
+	
+	
+	function agregarFoto(imageURI, el){
+		var img = el.parent().find("img");
+	
+		img.attr("src", "data:image/jpeg;base64," + imageURI);
+		img.attr("src2", imageURI);
+		
+		$.post(server + "cordenes", {
+			"img": "data:image/jpeg;base64," + imageURI,
+			"nombre": el.attr("documento")
+		})
 	}
 }
