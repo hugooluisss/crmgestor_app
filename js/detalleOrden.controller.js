@@ -33,6 +33,42 @@ function callDetalleOrden(id){
 			setDatos(doc, objDoc);
 			$(".documentos").append(doc);
 			
+			doc.find(".btnCamara").attr("documento", doc.nombre);
+			doc.find(".btnCamara").click(function(){
+				navigator.camera.getPicture(function(imageURI){
+					agregarFoto(imageURI);
+				}, function(message){
+					alertify.error("Ocurrio un error al obtener la imagen");
+				}, {
+					quality: 100,
+					destinationType: Camera.DestinationType.DATA_URL,
+					encodingType: Camera.EncodingType.JPEG,
+					targetWidth: 800,
+					targetHeight: 800,
+					correctOrientation: true,
+					allowEdit: false,
+					saveToPhotoAlbum: true
+				});
+			});
+			
+			doc.find(".btnGaleria").attr("documento", doc.nombre);
+			doc.find(".btnGaleria").click(function(){
+				navigator.camera.getPicture(function(imageURI){
+					agregarFoto(imageURI);
+				}, function(message){
+					alertify.error("Ocurrio un error al obtener la imagen");
+				}, {
+					quality: 100,
+					destinationType: Camera.DestinationType.DATA_URL,
+					encodingType: Camera.EncodingType.JPEG,
+					targetWidth: 800,
+					targetHeight: 800,
+					correctOrientation: true,
+					allowEdit: false,
+					sourceType: navigator.camera.PictureSourceType.SAVEDPHOTOALBUM
+				});
+			});
+			
 			bandDoc = bandDoc && objDoc.archivo != '';
 		}
 		
@@ -54,39 +90,48 @@ function callDetalleOrden(id){
 		
 		ciclo = setInterval(getMensajes, 2000);
 		
+		if (orden.citas.length == 0 && orden.cita == 1){
+			$(".cita").parent().parent().show();
+			$(".proximaCita").hide();
 		
-		$("#frmAddCita").validate({
-			debug: true,
-			errorClass: "validateError",
-			rules: {
-				txtFechaCita: {
-					required : true
-				}
-			},
-			wrapper: 'span',
-			submitHandler: function(form){
-				form = $(form);
-				
-				var obj = new TCita;
-				obj.add({
-					orden: idOrden,
-					fecha: form.find("#txtFechaCita").val(),
-					descripcion: form.find("#txtDescripcion").val(),
-					fn: {
-						before: function(){
-							form.find("[type=submit]").prop("disabled", true);
-						}, after: function(resp){
-							form.find("[type=submit]").prop("disabled", false);
-							
-							if(resp.band)
-								mensajes.alert({"titulo": "Datos guardados", mensaje: "Tu cita fue agregada, nuestro gestor te informará si está disponible ese día y hora"});
-							else
-								mensajes.alert({"titulo": "Error", mensaje: "No pudo ser registrada tu cita"});
-						}
+			$("#frmAddCita").validate({
+				debug: true,
+				errorClass: "validateError",
+				rules: {
+					txtFechaCita: {
+						required : true
 					}
-				});
-			}
-		});
+				},
+				wrapper: 'span',
+				submitHandler: function(form){
+					form = $(form);
+					
+					var obj = new TCita;
+					obj.add({
+						orden: idOrden,
+						fecha: form.find("#txtFechaCita").val(),
+						descripcion: form.find("#txtDescripcion").val(),
+						fn: {
+							before: function(){
+								form.find("[type=submit]").prop("disabled", true);
+							}, after: function(resp){
+								form.find("[type=submit]").prop("disabled", false);
+								
+								if(resp.band)
+									mensajes.alert({"titulo": "Datos guardados", mensaje: "Tu cita fue agregada, nuestro gestor te informará si está disponible ese día y hora"});
+								else
+									mensajes.alert({"titulo": "Error", mensaje: "No pudo ser registrada tu cita"});
+							}
+						}
+					});
+				}
+			});
+		}else{
+			$(".proximaCita").show();
+			setDatos($(".proximaCita"), orden.citas[0]);
+			$(".cita").parent().parent().hide();
+		}
+		
 		
 	}, "json");
 	
@@ -132,6 +177,7 @@ function callDetalleOrden(id){
 				setDatos(pl, mensaje);
 				
 				pl.addClass(mensaje.emisor == 'C'?"text-left":"text-right");
+				pl.addClass(mensaje.emisor == 'C'?"":"offset-1");
 				
 				$("#dvConversacion").append(pl);
 				

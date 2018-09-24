@@ -34,23 +34,28 @@
 					<form id="frmAddCita">
 						<div class="row">
 							<div class="col-6">
-								<input type="text" class="form-control" id="txtFechaCita" name="txtFechaCita" placeholder="Fecha y hora" readonly="true" />
+								<input type="text" class="form-control form-control-sm" id="txtFechaCita" name="txtFechaCita" placeholder="Fecha y hora" readonly="true" />
 							</div>
 						</div>
 						<br />
 						<div class="row">
 							<div class="col-12">
-								<input type="text" class="form-control" id="txtComentario" name="txtComentario" placeholder="Comentario al gestor" />
+								<input type="text" class="form-control form-control-sm" id="txtComentario" name="txtComentario" placeholder="Comentario al gestor" />
 							</div>
 						</div>
 						<br />
 						<div class="row">
-							<div class="offset-8 col-4 text-right">
-								<button class="btn btn-danger" id="btnCita">Solicitar</button>
+							<div class="offset-sm-7 col-sm-5 offset-6 col-6 text-right">
+								<button class="btn btn-danger btn-block" id="btnCita">Solicitar</button>
 							</div>
 						</div>
 					</form>
 				</div>
+			</div>
+		</div>
+		<div class="proximaCita">
+			<div class="alert alert-warning">
+				<strong>Tu cita para el <span campo="fecha"></span> para "<span campo="descripcion"></span>" está confirmada.</strong> Recuerda estar a tiempo y si tienes alguna pregunta envíale un mensaje por el mensajero.
 			</div>
 		</div>
 	</div>
@@ -59,7 +64,7 @@
 	<div class="col-sm-12">
 		<div class="card">
 			<div class="card-block">
-				<h5 class="card-title">Chat</h5>
+				<h5 class="card-title">Mensajero</h5>
 				<div class="row">
 					<div class="col-12">
 						<div id="dvConversacion"></div>
