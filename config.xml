@@ -6,7 +6,7 @@
 		version  = "1.0.0">  
 
 		<name>No mas tenencia</name>
-		<description>App de gestion de trámites vehiculares</description>
+		<description>App de gestion de tramites vehiculares</description>
 		<!--
 			If you do not want any permissions to be added to your app, add the
 			following tag to your config.xml; you will still have the INTERNET
