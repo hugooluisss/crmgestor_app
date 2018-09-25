@@ -196,7 +196,7 @@ function callDetalleOrden(id){
 		img.attr("src2", imageURI);
 		
 		$.post(server + "cordenes", {
-			"img": "data:image/jpeg;base64," + imageURI,
+			"img": imageURI, //"data:image/jpeg;base64," + imageURI,
 			"nombre": el.attr("documento"),
 			"orden": idOrden,
 			"action": "uploadDocumento",
@@ -208,6 +208,6 @@ function callDetalleOrden(id){
 				mensajes.log({"mensaje": "Documento actualizado"});
 			else
 				mensajes.alert({"titulo": "Error", "mensaje": "No se pudo actualizar el documento"});
-		})
+		}, "json")
 	}
 }
