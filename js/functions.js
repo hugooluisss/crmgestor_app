@@ -204,6 +204,5 @@ function activarNotificaciones(){
 	
 	window.plugins.PushbotsPlugin.resetBadge();
 	window.plugins.PushbotsPlugin.toggleNotifications(true);
-	window.plugins.PushbotsPlugin.setAlias("usuario_" + objUsuario.idTransportista);
-	window.plugins.PushbotsPlugin.tag("transportista");
+	window.plugins.PushbotsPlugin.setAlias("usuario_" + objUsuario.idUsuario);
 }

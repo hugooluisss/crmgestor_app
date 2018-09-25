@@ -29,7 +29,7 @@ function callDetalleOrden(id){
 			doc = $(plantillas["documento"]);
 			objDoc = orden.documentacion[i];
 			
-			doc.find("img").attr("src", objDoc.archivo == ''?'img/documento.png':(server + objDoc.archivo));
+			doc.find("img").attr("src", objDoc.archivo == ''?'img/documento.png':(server + objDoc.archivo + "?" + Math.floor((Math.random() * 10000) + 1)));
 			setDatos(doc, objDoc);
 			$(".documentos").append(doc);
 			

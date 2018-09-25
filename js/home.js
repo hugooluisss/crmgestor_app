@@ -79,6 +79,9 @@ function callPanel(panel){
 		case 'ordenes':
 			callOrdenes();
 		break;
+		case 'logout':
+			callLogout();
+		break;
 		default:
 			console.info("Panel no encontrado");
 	}
