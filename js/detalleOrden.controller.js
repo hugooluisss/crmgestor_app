@@ -29,7 +29,7 @@ function callDetalleOrden(id){
 			doc = $(plantillas["documento"]);
 			objDoc = orden.documentacion[i];
 			
-			doc.find("img").attr("src", server + objDoc.archivo);
+			doc.find("img").attr("src", objDoc.archivo == ''?'img/documento.png':(server + objDoc.archivo));
 			setDatos(doc, objDoc);
 			$(".documentos").append(doc);
 			
@@ -189,6 +189,7 @@ function callDetalleOrden(id){
 	
 	
 	function agregarFoto(imageURI, el){
+		blockUI();
 		var img = el.parent().find("img");
 	
 		img.attr("src", "data:image/jpeg;base64," + imageURI);
@@ -196,7 +197,17 @@ function callDetalleOrden(id){
 		
 		$.post(server + "cordenes", {
 			"img": "data:image/jpeg;base64," + imageURI,
-			"nombre": el.attr("documento")
+			"nombre": el.attr("documento"),
+			"orden": idOrden,
+			"action": "uploadDocumento",
+			"json": true,
+			"movil": true
+		}, function(resp){
+			unBlockUI();
+			if (resp.band)
+				mensajes.log({"mensaje": "Documento actualizado"});
+			else
+				mensajes.alert({"titulo": "Error", "mensaje": "No se pudo actualizar el documento"});
 		})
 	}
 }
