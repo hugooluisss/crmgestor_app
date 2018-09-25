@@ -33,7 +33,7 @@ function callDetalleOrden(id){
 			setDatos(doc, objDoc);
 			$(".documentos").append(doc);
 			
-			doc.find(".btnCamara").attr("documento", doc.nombre);
+			doc.find(".btnCamara").attr("documento", objDoc.nombre);
 			doc.find(".btnCamara").click(function(){
 				var el = $(this);
 				navigator.camera.getPicture(function(imageURI){
