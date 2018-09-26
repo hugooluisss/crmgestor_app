@@ -67,19 +67,12 @@ TUsuario = function(chofer){
 	this.add = function(datos){
 		if (datos.fn.before !== undefined) datos.fn.before();
 		
-		$.post(server + 'ctransportistas', {
+		$.post(server + 'cclientes', {
 				"id": datos.id,
-				"razonSocial": datos.razonSocial,
-				"tipoCamion": datos.tipoCamion,
-				"representante": datos.email, 
-				"rut": datos.rut,
-				"patente": datos.patente,
+				"nombre": datos.nombre,
 				"correo": datos.correo,
+				"telefono": datos.telefono, 
 				"pass": datos.pass,
-				"calificacion": datos.calificacion,
-				"aprobado": datos.aprobado,
-				"situacion": datos.situacion,
-				"telefono": datos.telefono,
 				"action": "add",
 				"movil": true
 			}, function(data){

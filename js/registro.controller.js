@@ -10,15 +10,21 @@ function callRegistro(){
 				required: true,
 				email: true,
 				"remote": {
-					url: server + "ctransportistas",
+					url: server + "cclientes",
 					type: "post",
 					data: {
-						"action": "validarEmail",
+						"action": "validarCorreo",
+						"correo": function(){
+							return $("#txtCorreo").val()
+						},
 						"movil": "true"
 					}
 				}
 			},
 			txtTelefono: {
+				required: true
+			},
+			txtNombre: {
 				required: true
 			},
 			txtPass: {
@@ -38,7 +44,7 @@ function callRegistro(){
 				correo: form.find("#txtCorreo").val(), 
 				pass: form.find("#txtPass").val(),
 				telefono: form.find("#txtTelefono").val(),
-				tipoCamion: 1,
+				nombre: form.find("#txtNombre").val(),
 				aprobado: 0,
 				fn: {
 					before: function(){
@@ -53,7 +59,7 @@ function callRegistro(){
 							form.find("[type=submit]").prop("disabled", false);
 						}else{
 							mensajes.log({
-								"mensaje": "Registro realizado... nosotros nos comunicaremos contigo"
+								"mensaje": "Te hemos enviado un correo para verificar tu cuenta. Verificala para poder ingresar con tus datos"
 							});
 							callIndex();
 						}
