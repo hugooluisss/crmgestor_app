@@ -5,6 +5,7 @@ function callDetalleOrden(id){
 	var idOrden = id;
 	var ultimaLectura = undefined;
 	var ciclo;
+	var totalDoc = 0;
 	
 	$("#txtFechaCita").datetimepicker({
 		format: "Y-m-d H:i",
@@ -18,13 +19,17 @@ function callDetalleOrden(id){
 		"movil": true
 	}, function(orden){
 		setDatos($("#modulo"), orden);
-		
+		console.log(orden);
 		$("[campo=estado]").css("color", orden.colorestado);
 		
 		if (orden.documentacion.length == 0)
 			$(".documentos").parent().parent().hide();
 		
+		if (orden.gestor != undefined)
+			$("#dvGestor").html('<small class="text-muted"><b>Gestor: </b>' + orden.gestor.nombre + '</small>');
+		
 		bandDoc = true;
+		totalDoc = 0;
 		for(i in orden.documentacion){
 			doc = $(plantillas["documento"]);
 			objDoc = orden.documentacion[i];
@@ -72,12 +77,44 @@ function callDetalleOrden(id){
 			});
 			
 			bandDoc = bandDoc && objDoc.archivo != '';
+			totalDoc += objDoc.archivo != ''?1:0;
 		}
 		
-		if (bandDoc && orden.cita == 1)
-			$(".cita").parent().parent().show();
-		else
-			$(".cita").parent().parent().hide();
+		setViewDocumentos(orden);
+		
+		$("#frmAddCita").validate({
+			debug: true,
+			errorClass: "validateError",
+			rules: {
+				txtFechaCita: {
+					required : true
+				}
+			},
+			wrapper: 'span',
+			submitHandler: function(form){
+				form = $(form);
+				
+				var obj = new TCita;
+				obj.add({
+					orden: idOrden,
+					fecha: form.find("#txtFechaCita").val(),
+					descripcion: form.find("#txtDescripcion").val(),
+					fn: {
+						before: function(){
+							form.find("[type=submit]").prop("disabled", true);
+						}, after: function(resp){
+							form.find("[type=submit]").prop("disabled", false);
+							
+							if(resp.band){
+								mensajes.alert({"titulo": "Datos guardados", mensaje: "Tu cita fue agregada, nuestro gestor te informará si está disponible ese día y hora"});
+								callDetalleOrden(idOrden);
+							}else
+								mensajes.alert({"titulo": "Error", mensaje: "No pudo ser registrada tu cita"});
+						}
+					}
+				});
+			}
+		});
 		
 		$("#btnSendMsg").click(function(){
 			sendMensaje();
@@ -91,50 +128,6 @@ function callDetalleOrden(id){
 		getMensajes();
 		
 		ciclo = setInterval(getMensajes, 2000);
-		
-		if (orden.citas.length == 0 && orden.cita == 1){
-			$(".cita").parent().parent().show();
-			$(".proximaCita").hide();
-		
-			$("#frmAddCita").validate({
-				debug: true,
-				errorClass: "validateError",
-				rules: {
-					txtFechaCita: {
-						required : true
-					}
-				},
-				wrapper: 'span',
-				submitHandler: function(form){
-					form = $(form);
-					
-					var obj = new TCita;
-					obj.add({
-						orden: idOrden,
-						fecha: form.find("#txtFechaCita").val(),
-						descripcion: form.find("#txtDescripcion").val(),
-						fn: {
-							before: function(){
-								form.find("[type=submit]").prop("disabled", true);
-							}, after: function(resp){
-								form.find("[type=submit]").prop("disabled", false);
-								
-								if(resp.band)
-									mensajes.alert({"titulo": "Datos guardados", mensaje: "Tu cita fue agregada, nuestro gestor te informará si está disponible ese día y hora"});
-								else
-									mensajes.alert({"titulo": "Error", mensaje: "No pudo ser registrada tu cita"});
-							}
-						}
-					});
-				}
-			});
-		}else{
-			$(".proximaCita").show();
-			setDatos($(".proximaCita"), orden.citas[0]);
-			$(".cita").parent().parent().hide();
-		}
-		
-		
 	}, "json");
 	
 	$("[showpanel=ordenes]").click(function(){
@@ -165,6 +158,8 @@ function callDetalleOrden(id){
 	
 	function getMensajes(){
 		var d = new Date;
+		if ($("#dvConversacion").length == 0)
+			clearInterval(ciclo);
 		
 		$.post(server + "cordenes", {
 			"orden": idOrden,
@@ -204,10 +199,28 @@ function callDetalleOrden(id){
 			"movil": true
 		}, function(resp){
 			unBlockUI();
-			if (resp.band)
+			if (resp.band){
 				mensajes.log({"mensaje": "Documento actualizado"});
-			else
+				totalDoc++;
+			}else
 				mensajes.alert({"titulo": "Error", "mensaje": "No se pudo actualizar el documento"});
 		}, "json")
+	}
+	
+	function setViewDocumentos(orden){
+		if (orden.cita == 1 && totalDoc >= orden.documentacion.length){
+			$(".cita").parent().parent().show();
+			if (orden.citas.length == 0){
+				$(".cita").parent().parent().show();
+				$(".proximaCita").hide();
+			}else{
+				$(".proximaCita").show();
+				setDatos($(".proximaCita"), orden.citas[0]);
+				$(".cita").parent().parent().hide();
+			}
+		}else{
+			$(".cita").parent().parent().hide();
+			$(".proximaCita").hide();
+		}
 	}
 }

@@ -59,7 +59,7 @@ function callRegistro(){
 							form.find("[type=submit]").prop("disabled", false);
 						}else{
 							mensajes.log({
-								"mensaje": "Te hemos enviado un correo para verificar tu cuenta. Verificala para poder ingresar con tus datos"
+								"mensaje": "Muchas gracias, tu registro está completo... ahora puedes iniciar sesión"
 							});
 							callIndex();
 						}

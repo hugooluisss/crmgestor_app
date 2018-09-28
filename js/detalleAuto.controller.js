@@ -72,9 +72,9 @@ function callDetalleAuto(id){
 			
 			pl.attr("datos", tramites[i].json);
 			setDatos(pl, tramites[i]);
-			if (tramites[i].icono != undefined || tramites[i].icono != '')
+			if (tramites[i].icono != undefined && tramites[i].icono != '')
 				pl.find(".icono").attr("src", server + tramites[i].icono);
-			
+			console.log(tramites[i].json);
 			pl.attr("datos", tramites[i].json);
 			
 			$("#listaTramites").append(pl);
@@ -96,6 +96,11 @@ function callDetalleAuto(id){
 		
 		if (tramite.documentacion == null)
 			$("#winTramite").find("[campo=documentacion]").hide();
+			
+		if (tramite.icono != undefined && tramite.icono != '')
+			$("#winTramite").find(".icono").attr("src", server + tramite.icono);
+		else
+			$("#winTramite").find(".icono").attr("src", "img/tramite.png");
 			
 		$("#winTramite").find("#btnSolicitar").attr("datos", $(e.relatedTarget).attr("datos"));
 	});
@@ -150,16 +155,11 @@ function callDetalleAuto(id){
 									$("#winPago").modal("hide");
 									$("#winTramite").modal("hide");
 									
-									if (tramite.cita == 0){
-										callPanel("home");
-										mensajes.alert({"titulo": "Registro completo", "mensaje": "Muchas gracias por su pago..."});
-									}else{
-										$("#winCita").modal();
-										$("#winCita").attr("orden", resp.id);
-										$("#winCita").attr("duracion", tramite.duracion);
-										
-										mensajes.alert({"titulo": "Registro completo", "mensaje": "Necesitamos que reserves una cita"});
-									}
+									$("#winCita").modal();
+									$("#winCita").attr("orden", resp.id);
+									$("#winCita").attr("duracion", tramite.duracion);
+									
+									mensajes.alert({"titulo": "Registro completo", "mensaje": "Gracias por su pago... lo enviaremos al panel de de su trámite para completar el registro de datos"});
 								}else
 									mensajes.alert({"titulo": "Error", "mensaje": "No se pudo procesar el pago"});
 							}

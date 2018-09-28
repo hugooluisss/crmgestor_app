@@ -62,7 +62,7 @@ $(document).ready(function(){
 	setPanel();
 	
 	getPlantillas(function(){
-		callHome();
+		callPanel("autos");
 	});
 	
 	//app.onDeviceReady();
