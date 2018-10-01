@@ -1,5 +1,5 @@
 function callDetalleOrden(id){
-	console.info("Llamando a detalle del auto");
+	console.info("Llamando a detalle de la orden");
 	$("#modulo").attr("modulo", "detalleOrden").html(plantillas["detalleOrden"]);
 	setPanel($("#modulo"));
 	var idOrden = id;
@@ -11,7 +11,6 @@ function callDetalleOrden(id){
 		format: "Y-m-d H:i",
 		step: 30
 	});
-
 	
 	$.post(server + "cordenes", {
 		"action": "getData",

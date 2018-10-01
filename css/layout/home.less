@@ -1,7 +1,6 @@
 body[layout="home"]{
 	background: @grisClaro;
 	@altoPie: 60px;
-	margin-bottom: 80px;
 	
 	#menuPrincipal{
 		//background: url(@bgNav);
@@ -10,6 +9,14 @@ body[layout="home"]{
 		background-repeat: no-repeat;
 		background-size: cover;
 		color: white;
+		
+		#tituloModulo{
+			color: @color4;
+			font-family: 'Varela Round', sans-serif;
+			text-transform: uppercase;
+			font-size: 14px;
+			font-weight: bold;
+		}
 		
 		.logo{
 			height: 35px;
@@ -38,6 +45,9 @@ body[layout="home"]{
 		padding-right: 5px;
 		background: @grisClaro;
 		height: 100%;
+		
+		overflow-y: scroll;
+		margin-bottom: 100px;
 	}
 	
 	#pie{

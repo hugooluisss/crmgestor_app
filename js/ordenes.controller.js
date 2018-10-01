@@ -1,8 +1,13 @@
 function callOrdenes(){
 	console.info("Llamando a ordenes");
+	$("#tituloModulo").html("Trámites activos");
 	$("#modulo").attr("modulo", "ordenes").html(plantillas["ordenes"]);
 	setPanel($("#modulo"));
 	console.info("Carga de ordenes finalizada");
+	
+	$("#modulo").find("[showpanel=autos]").click(function(){
+		mensajes.alert({"mensaje": "Selecciona un vehículo para asignar el trámite", "titulo": "Nuevo trámite"});
+	});
 	
 	getLista();
 	

@@ -1,5 +1,6 @@
 function callAutos(){
 	console.info("Llamando a Autos");
+	$("#tituloModulo").html("Mis Automóviles");
 	$("#modulo").attr("modulo", "autos").html(plantillas["autos"]);
 	setPanel($("#modulo"));
 	console.info("Carga de autos finalizada");
