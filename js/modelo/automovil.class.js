@@ -9,6 +9,7 @@ TAutomovil = function(){
 				"marca": datos.marca,
 				"modelo": datos.modelo,
 				"anio": datos.anio,
+				"cliente": datos.cliente,
 				"movil": true,
 				"action": "add"
 			}, function(data){

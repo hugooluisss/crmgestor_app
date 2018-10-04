@@ -89,11 +89,12 @@ function callDetalleAuto(id){
 		
 		setDatos($("#winTramite"), tramite);
 		
+		/*
 		if (tramite.color != null)
 			$("#winTramite").find(".modal-header").css("background", tramite.color).css("color", "white");
 		else
 			$("#winTramite").find(".modal-header").css("background", "white").css("color", "black");
-		
+		*/
 		if (tramite.documentacion == null)
 			$("#winTramite").find("[campo=documentacion]").hide();
 			
