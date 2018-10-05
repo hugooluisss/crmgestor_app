@@ -120,9 +120,17 @@ function setDatos(plantilla, datos){
 	$.each(datos, function(i, valor){
 		antes = plantilla.find("[campo=" + i + "]").attr("before") || ""; 
 		despues = plantilla.find("[campo=" + i + "]").attr("after") || ""; 
-		valor =  antes + valor + despues;
-		plantilla.find("[campo=" + i + "]").html(valor);
-		plantilla.find("[campo=" + i + "]").val(valor);
+		valorText =  antes + valor + despues;
+		plantilla.find("[campo=" + i + "]").each(function(){
+			var el = $(this);
+			if (el.is("select") || el.is("input") || el.is("textarea")){
+				el.val(valor);
+				console.log(el);
+			}else{
+				el.html(valorText);
+				console.log("Sin", el);
+			}
+		});
 	});
 }
 

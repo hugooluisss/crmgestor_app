@@ -2,6 +2,7 @@ function callDetalleAuto(id){
 	console.info("Llamando a detalle del auto");
 	$("#modulo").attr("modulo", "detalleAuto").html(plantillas["detalleAuto"]);
 	setPanel($("#modulo"));
+	$(".modal-backdrop").remove();
 	idCarro = id;
 	
 	var d = new Date();
@@ -9,6 +10,19 @@ function callDetalleAuto(id){
 	
 	for(anio = d.getFullYear() ; anio < fin ; anio++)
 		$(".exp_year").append($('<option value="' + anio + '">' + anio + '</option>'));
+		
+	d = new Date;
+	for(anio = 1980 ; anio <= d.getFullYear() ; anio++){
+		$("#selModelo").append($("<option />", {
+			value: anio,
+			text: anio
+		}));
+	}
+	
+	$("#txtVence").datetimepicker({
+		format: "Y-m-d",
+		timepicker: false
+	});
 	
 	$.post(server + "cautomoviles", {
 		"id": id,
@@ -18,6 +32,28 @@ function callDetalleAuto(id){
 		setDatos($("#modulo"), datos);
 	}, "json");
 	
+	console.info("Carga del detalle auto finalizada");
+	
+	$("#btnEliminar").click(function(){
+		var el = $(this);
+		mensajes.confirm({"titulo": "Eliminar", "mensaje": "¿Seguro de querer borrar?", "botones": "Si,No", "funcion": function(resp){
+			if (resp == 1){
+				var obj = new TAutomovil;
+				obj.del({
+					"id": idCarro,
+					"fn": {
+						after: function(resp){
+							if (resp.band){
+								mensajes.log({"mensaje": "Vehículo borrado"});
+								callAutos();
+							}else
+								mensajes.alert({"titulo": "Error", "mensaje": "No se pudo borrar el registro"});
+						}
+					}
+				});
+			}
+		}});
+	});
 	
 	$("#frmVehiculo").validate({
 		debug: true,
@@ -30,8 +66,10 @@ function callDetalleAuto(id){
 				required : true
 			},
 			txtAnio: {
-				required : true
-			}
+				required : true,
+				number: true
+			},
+			txtVence: "required"
 		},
 		wrapper: 'span',
 		submitHandler: function(form){
@@ -39,27 +77,33 @@ function callDetalleAuto(id){
 			
 			var obj = new TAutomovil;
 			obj.add({
-				id: form.find("#id").val(),
-				modelo: form.find("#txtModelo").val(),
-				anio: form.find("#txtAnio").val(),
-				marca: form.find("#txtMarca").val(),
+				id: form.find("#idAuto").val(),
+				marca: form.find("#txtMarca").val(), 
+				submarca: form.find("#txtSubMarca").val(), 
+				modelo: form.find("#selModelo").val(),
+				serie: form.find("#txtSerie").val(),
+				motor: form.find("#txtMotor").val(), 
+				placa: form.find("#txtPlaca").val(), 
+				holograma: form.find("#selHolograma").val(), 
+				vence: form.find("#txtVence").val(),
+				cliente: objUsuario.idUsuario,
 				fn: {
 					before: function(){
 						form.find("[type=submit]").prop("disabled", true);
 					}, after: function(resp){
 						form.find("[type=submit]").prop("disabled", false);
 						
-						if(resp.band)
-							mensajes.alert({"titulo": "Datos guardados", mensaje: "Gracias, hemos actualizados los datos"});
-						else
+						if(resp.band){
+							mensajes.log({mensaje: "Los datos del vehículo se actualizaron"});
+							$('#winDetalleAuto').modal("hide");
+							callDetalleAuto(id);
+						}else
 							mensajes.alert({"titulo": "Error", mensaje: "No se pudo registrar los datos"});
 					}
 				}
 			});
 		}
 	});
-	
-	console.info("Carga del detalle auto finalizada");
 	
 	
 	$.post(server + "listatramitesapp", {
@@ -73,8 +117,8 @@ function callDetalleAuto(id){
 			pl.attr("datos", tramites[i].json);
 			setDatos(pl, tramites[i]);
 			if (tramites[i].icono != undefined && tramites[i].icono != '')
-				pl.find(".icono").attr("src", server + tramites[i].icono);
-			console.log(tramites[i].json);
+				pl.css("background-image", "url(" + server + tramites[i].icono + ")");
+			
 			pl.attr("datos", tramites[i].json);
 			
 			$("#listaTramites").append(pl);
@@ -98,10 +142,13 @@ function callDetalleAuto(id){
 		if (tramite.documentacion == null)
 			$("#winTramite").find("[campo=documentacion]").hide();
 			
-		if (tramite.icono != undefined && tramite.icono != '')
+		if (tramite.icono != undefined && tramite.icono != ''){
 			$("#winTramite").find(".icono").attr("src", server + tramite.icono);
-		else
-			$("#winTramite").find(".icono").attr("src", "img/tramite.png");
+			$("#winTramite").find(".modal-header").css("background-image", "url(" + server + tramite.icono + ")");
+		}else{
+			$("#winTramite").find(".icono").attr("src", "img/logoSinNombre.png");
+			$("#winTramite").find(".modal-header").css("background-image", "");
+		}
 			
 		$("#winTramite").find("#btnSolicitar").attr("datos", $(e.relatedTarget).attr("datos"));
 	});
@@ -155,11 +202,12 @@ function callDetalleAuto(id){
 								if (resp.band){
 									$("#winPago").modal("hide");
 									$("#winTramite").modal("hide");
-									
+									/*
 									$("#winCita").modal();
 									$("#winCita").attr("orden", resp.id);
 									$("#winCita").attr("duracion", tramite.duracion);
-									
+									*/
+									callDetalleOrden(resp.id);
 									mensajes.alert({"titulo": "Registro completo", "mensaje": "Gracias por su pago... lo enviaremos al panel de de su trámite para completar el registro de datos"});
 								}else
 									mensajes.alert({"titulo": "Error", "mensaje": "No se pudo procesar el pago"});

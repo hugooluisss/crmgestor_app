@@ -18,6 +18,11 @@ function callOrdenes(){
 			"json": true,
 			"movil": true,
 		}, function(ordenes){
+			
+			if (ordenes.length == 0){
+				mensajes.alert({"titulo": "Registra un vehículo", "mensaje": "Es necesario que registres un vehículo"})
+				callAutos();
+			}
 			var pl;
 			for(i in ordenes){
 				pl = $(plantillas["orden"]);

@@ -5,6 +5,19 @@ function callAutos(){
 	setPanel($("#modulo"));
 	console.info("Carga de autos finalizada");
 	
+	d = new Date;
+	for(anio = 1980 ; anio <= d.getFullYear() ; anio++){
+		$("#selModelo").append($("<option />", {
+			value: anio,
+			text: anio
+		}));
+	}
+	
+	$("#txtVence").datetimepicker({
+		format: "Y-m-d",
+		timepicker: false
+	});
+	
 	getLista();
 	
 	function getLista(){
@@ -15,35 +28,19 @@ function callAutos(){
 			"movil": true,
 		}, function(autos){
 			var pl;
+			
+			if (autos.length == 0)
+				$("#panelSinCarros").show();
+			
 			for(i in autos){
 				pl = $(plantillas["auto"]);
 				
 				pl.attr("datos", autos[i].json);
 				setDatos(pl, autos[i]);
 				
-				pl.find("[action=detalle]").attr("identificador", autos[i].idAuto).click(function(){
+				pl.attr("identificador", autos[i].idAuto).click(function(){
 					var el = $(this);
 					callDetalleAuto(el.attr("identificador"));
-				});
-				
-				pl.find("[action=eliminar]").attr("identificador", autos[i].idAuto).click(function(){
-					var el = $(this);
-					mensajes.confirm({"titulo": "Eliminar", "mensaje": "¿Seguro de querer borrar?", "botones": "Si,No", "funcion": function(resp){
-						if (resp == 1){
-							var obj = new TAutomovil;
-							obj.del({
-								"id": el.attr("identificador"),
-								"fn": {
-									after: function(resp){
-										if (resp.band)
-											getLista();
-										else
-											mensajes.alert({"titulo": "Error", "mensaje": "No se pudo borrar el registro"});
-									}
-								}
-							});
-						}
-					}});
 				});
 				
 				$("#listaAutos").append(pl);
@@ -76,7 +73,8 @@ function callAutos(){
 			txtAnio: {
 				required : true,
 				number: true
-			}
+			},
+			txtVence: "required"
 		},
 		wrapper: 'span',
 		submitHandler: function(form){
@@ -85,9 +83,14 @@ function callAutos(){
 			var obj = new TAutomovil;
 			obj.add({
 				id: form.find("#idAuto").val(),
-				modelo: form.find("#txtModelo").val(),
-				anio: form.find("#txtAnio").val(),
-				marca: form.find("#txtMarca").val(),
+				marca: $("#txtMarca").val(), 
+				submarca: $("#txtSubMarca").val(), 
+				modelo: $("#selModelo").val(),
+				serie: $("#txtSerie").val(),
+				motor: $("#txtMotor").val(), 
+				placa: $("#txtPlaca").val(), 
+				holograma: $("#selHolograma").val(), 
+				vence: $("#txtVence").val(),
 				cliente: objUsuario.idUsuario,
 				fn: {
 					before: function(){

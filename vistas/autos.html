@@ -1,6 +1,11 @@
-<button id="btnAdd" class="btn btn-primary" data-toggle="modal" data-target="#winDetalleAuto"><i class="fa fa-car" aria-hidden="true" ></i> Nuevo</button>
-<br />
-<br />
+<div class="text-right">
+	<button id="btnAdd" class="btn btn-link btn-danger" data-toggle="modal" data-target="#winDetalleAuto"><i class="fa fa-2x fa-plus" aria-hidden="true"></i></button>
+</div>
+
+<div class="text-right ocultar" id="panelSinCarros">
+	<img src="img/primerVehiculo.png" />
+</div>
+
 <ul class="list-group" id="listaAutos">
 </ul>
 
@@ -17,21 +22,57 @@
 				</div>
 				<div class="modal-body">
 					<div class="form-group row">
-						<label for="txtMarca" class="col-2 col-form-label">Marca</label>
-						<div class="col-10">
-							<input class="form-control" type="text" value="" id="txtMarca" name="txtMarca">
+						<label for="txtMarca" class="col-5 control-label">Marca</label>
+						<div class="col-7">
+							<input class="form-control" id="txtMarca" name="txtMarca" />
 						</div>
 					</div>
 					<div class="form-group row">
-						<label for="txtModelo" class="col-2 col-form-label">Modelo</label>
-						<div class="col-10">
-							<input class="form-control" type="text" value="" id="txtModelo" name="txtModelo">
+						<label for="txtSubMarca" class="col-5 control-label">Submarca</label>
+						<div class="col-7">
+							<input class="form-control" id="txtSubMarca" name="txtSubMarca" />
 						</div>
 					</div>
 					<div class="form-group row">
-						<label for="txtAnio" class="col-2 col-form-label">Año</label>
-						<div class="col-10">
-							<input class="form-control" type="text" value="" id="txtAnio" name="txtAnio">
+						<label for="selModelo" class="col-5 control-label">Modelo</label>
+						<div class="col-7">
+							<select id="selModelo" name="selModelo" class="form-control">
+							</select>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="txtSerie" class="col-5 control-label">Número de serie</label>
+						<div class="col-5">
+							<input class="form-control" id="txtSerie" name="txtSerie" style="text-transform: uppercase" />
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="txtMotor" class="col-5 control-label">Número de motor</label>
+						<div class="col-5">
+							<input class="form-control" id="txtMotor" name="txtMotor"  style="text-transform: uppercase" />
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="txtPlaca" class="col-5 control-label">Placa</label>
+						<div class="col-5">
+							<input class="form-control" id="txtPlaca" name="txtPlaca" style="text-transform: uppercase" />
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="selHolograma" class="col-5 control-label">Holograma</label>
+						<div class="col-5">
+							<select id="selHolograma" name="selHolograma" class="form-control">
+								<option value="00">00</option>
+								<option value="0">0</option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="txtVence" class="col-5 control-label">Fecha de Expiración</label>
+						<div class="col-5">
+							<input class="form-control" id="txtVence" name="txtVence" readonly="true" />
 						</div>
 					</div>
 				</div>

@@ -6,10 +6,15 @@ TAutomovil = function(){
 		
 		$.post(server + 'cautomoviles', {
 				"id": datos.id,
-				"marca": datos.marca,
-				"modelo": datos.modelo,
-				"anio": datos.anio,
 				"cliente": datos.cliente,
+				"marca": datos.marca,
+				"submarca": datos.submarca,
+				"modelo": datos.modelo,
+				"motor": datos.motor,
+				"placa": datos.placa,
+				"holograma": datos.holograma,
+				"serie": datos.serie,
+				"vence": datos.vence,
 				"movil": true,
 				"action": "add"
 			}, function(data){

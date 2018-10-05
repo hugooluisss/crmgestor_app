@@ -3,52 +3,24 @@
 <button showpanel="autos" class="btn btn-default"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Regresar</button>
 <br />
 
-<div class="card">
-	<div class="card-block">
-		<br />
-		<form id="frmVehiculo">
-			<div class="row">
-				<div class="col-4 text-center">
-					Marca
-				</div>
-				<div class="col-4 text-center">
-					Modelo
-				</div>
-				<div class="col-4 text-center">
-					Año
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-4">
-					<input class="form-control" type="text" value="" id="txtMarca" name="txtMarca" campo="marca">
-				</div>
-				<div class="col-4">
-					<input class="form-control" type="text" value="" id="txtModelo" name="txtModelo" campo="modelo">
-				</div>
-				<div class="col-4">
-					<input class="form-control" type="text" value="" id="txtAnio" name="txtAnio" campo="anio">
-				</div>
-			</div>
-			<br />
-			<div class="row">
-				<div class="col-12 text-right">
-					<input type="hidden" id="id" campo="idAuto" />
-					<button type="submit" class="btn btn-primary">Guardar</button>
-				</div>
-			</div>
-		</form>
-		<br />
+<div class="card automovil">
+	<div class="card-body">
+		<h2 campo="marca"></h2>
+		<h5 campo="submarca"></h5>
+		<span campo="modelo" before="Modelo: "></span>
+		<span campo="placa" before="Placa: "></span>
+		<span campo="holograma" before="Holograma: "></span>
+		<br /><br />
+		<div class="text-right">
+			<button class="btn btn-xs btn-danger" id="btnModificar" data-toggle="modal" data-target="#winDetalleAuto"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+			<button class="btn btn-xs btn-danger" id="btnEliminar"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+		</div>
 	</div>
 </div>
 <br />
 <h5>Solicitar trámite</h5>
-<div class="card">
-	<div class="card-block">
-		<ul class="list-group" id="listaTramites">
-		</ul>
-	</div>
-</div>
-
+<ul class="list-group" id="listaTramites">
+</ul>
 
 
 
@@ -153,6 +125,83 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-primary" id="submitPago">Pagar ahora</button>
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+
+
+<form id="frmVehiculo">
+	<div class="modal fade" id="winDetalleAuto">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Vehículo</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="form-group row">
+						<label for="txtMarca" class="col-5 control-label">Marca</label>
+						<div class="col-7">
+							<input class="form-control" id="txtMarca" name="txtMarca" campo="marca" />
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="txtSubMarca" class="col-5 control-label">Submarca</label>
+						<div class="col-7">
+							<input class="form-control" id="txtSubMarca" name="txtSubMarca" campo="submarca" />
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="selModelo" class="col-5 control-label">Modelo</label>
+						<div class="col-7">
+							<select id="selModelo" name="selModelo" class="form-control" campo="modelo">
+							</select>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="txtSerie" class="col-5 control-label">Número de serie</label>
+						<div class="col-5">
+							<input class="form-control" id="txtSerie" name="txtSerie" style="text-transform: uppercase" campo="serie" />
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="txtMotor" class="col-5 control-label">Número de motor</label>
+						<div class="col-5">
+							<input class="form-control" id="txtMotor" name="txtMotor"  style="text-transform: uppercase" campo="motor" />
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="txtPlaca" class="col-5 control-label">Placa</label>
+						<div class="col-5">
+							<input class="form-control" id="txtPlaca" name="txtPlaca" style="text-transform: uppercase" campo="placa" />
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="selHolograma" class="col-5 control-label">Holograma</label>
+						<div class="col-5">
+							<select id="selHolograma" name="selHolograma" class="form-control" campo="holograma">
+								<option value="00">00</option>
+								<option value="0">0</option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="txtVence" class="col-5 control-label">Fecha de Expiración</label>
+						<div class="col-5">
+							<input class="form-control" id="txtVence" name="txtVence" readonly="true" campo="vence"/>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<input type="hidden" value="" id="idAuto" campo="idAuto">
+					<button type="submit" class="btn btn-primary">Guardar</button>
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
 				</div>
 			</div>

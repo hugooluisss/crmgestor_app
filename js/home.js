@@ -69,6 +69,7 @@ $(document).ready(function(){
 });
 
 function callPanel(panel){
+	$("#navbarSupportedContent").removeClass("show");
 	switch(panel){
 		case 'home':
 			callHome();
