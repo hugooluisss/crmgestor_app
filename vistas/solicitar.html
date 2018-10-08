@@ -1,0 +1,44 @@
+<div class="card tramite">
+	<div class="card-body">
+		<h3 campo="nombre"></h3>
+		<br /><br />
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-12">
+		<h4>Documentación necesaria</h4>
+		<p>Para iniciar tu trámite es necesario que nos envíes foto de lo siguiente</p>
+		
+		<div class="row documentos"></div>
+	</div>
+</div>
+<br />
+<div class="row" id="panelCita">
+	<div class="col-12">
+		<h4>Agenda una cita</h4>
+		<p>Ya con tu información completa será necesario agendar una cita</p>
+		
+		<form id="frmAddCita">
+			<div class="row">
+				<div class="col-12">
+					<input type="text" class="form-control form-control-sm" id="txtFechaCita" name="txtFechaCita" placeholder="¿Cuando y a que hora?" readonly="true" />
+				</div>
+			</div>
+			<br />
+			<div class="row">
+				<div class="col-12">
+					<textarea class="form-control form-control-sm" id="txtComentario" name="txtComentario" placeholder="Escribele un mensaje al gestor" rows="5"></textarea>
+				</div>
+			</div>
+			<br />
+		</form>
+	</div>
+</div>
+
+<div class="fixed-bottom">
+	<div class="col-12">
+		<button class="btn btn-danger btn-block" id="btnPagar" campo="precio" before="Pagar ">Pagar</button>
+		<br />
+	</div>
+</div>

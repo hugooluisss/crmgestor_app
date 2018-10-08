@@ -52,13 +52,15 @@ $(document).ready(function(){
 	plantillas["auto"] = "";
 	plantillas["detalleAuto"] = "";
 	plantillas["tramite"] = "";
-	
+	plantillas["solicitar"] = "";
+	plantillas["documento"] = "";
+	/*
 	plantillas["ordenes"] = "";
 	plantillas["orden"] = "";
 	plantillas["detalleOrden"] = "";
 	plantillas["documento"] = "";
 	plantillas["mensaje"] = "";
-	
+	*/
 	setPanel();
 	
 	getPlantillas(function(){

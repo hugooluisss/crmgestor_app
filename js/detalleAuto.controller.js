@@ -21,7 +21,8 @@ function callDetalleAuto(id){
 	
 	$("#txtVence").datetimepicker({
 		format: "Y-m-d",
-		timepicker: false
+		timepicker: false,
+		inline: true
 	});
 	
 	$.post(server + "cautomoviles", {
@@ -133,26 +134,27 @@ function callDetalleAuto(id){
 		
 		setDatos($("#winTramite"), tramite);
 		
-		/*
-		if (tramite.color != null)
-			$("#winTramite").find(".modal-header").css("background", tramite.color).css("color", "white");
-		else
-			$("#winTramite").find(".modal-header").css("background", "white").css("color", "black");
-		*/
 		if (tramite.documentacion == null || tramite.documentacion == undefined || tramite.documentacion == '')
 			$("#winTramite").find("[campo=documentacion]").hide();
 			
 		if (tramite.icono != undefined && tramite.icono != ''){
 			$("#winTramite").find(".icono").attr("src", server + tramite.icono);
-			$//("#winTramite").find(".modal-header").css("background-image", "url(" + server + tramite.icono + ")");
 		}else{
 			$("#winTramite").find(".icono").attr("src", "img/logoSinNombre.png");
-			//$("#winTramite").find(".modal-header").css("background-image", "");
 		}
 			
 		$("#winTramite").find("#btnSolicitar").attr("datos", $(e.relatedTarget).attr("datos"));
 	});
 	
+	
+	$("#btnSolicitar").click(function(){
+		var tramite = JSON.parse($("#winTramite").attr("datos"));
+		$("#winTramite").modal("hide");
+		$(".modal-backdrop").remove();
+		callSolicitar(tramite);
+	});
+	
+	/*
 	$("#winPago").on('show.bs.modal', function(e){
 		var tramite = JSON.parse($("#winTramite").attr("datos"));
 		$("#winPago").find("#submitPago").html("Pagar $ " + tramite.precio + " ahora");
@@ -202,11 +204,7 @@ function callDetalleAuto(id){
 								if (resp.band){
 									$("#winPago").modal("hide");
 									$("#winTramite").modal("hide");
-									/*
-									$("#winCita").modal();
-									$("#winCita").attr("orden", resp.id);
-									$("#winCita").attr("duracion", tramite.duracion);
-									*/
+									
 									callDetalleOrden(resp.id);
 									mensajes.alert({"titulo": "Registro completo", "mensaje": "Gracias por su pago... lo enviaremos al panel de de su trámite para completar el registro de datos"});
 								}else
@@ -223,11 +221,12 @@ function callDetalleAuto(id){
 		}, function(response) {
 			var $form = $("#frmEnvio");
 			unBlockUI();
-			/* Muestra los errores en la forma */
 			mensajes.alert({"titulo": "Conekta", "mensaje": response.message_to_purchaser});
 			$form.find("button").prop("disabled", false);
 			
 			unBlockUI();
 		});
 	});
+	
+	*/
 }
