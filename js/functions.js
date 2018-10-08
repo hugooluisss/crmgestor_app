@@ -125,10 +125,8 @@ function setDatos(plantilla, datos){
 			var el = $(this);
 			if (el.is("select") || el.is("input") || el.is("textarea")){
 				el.val(valor);
-				console.log(el);
 			}else{
 				el.html(valorText);
-				console.log("Sin", el);
 			}
 		});
 	});

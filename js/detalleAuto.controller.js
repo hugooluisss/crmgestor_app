@@ -139,15 +139,15 @@ function callDetalleAuto(id){
 		else
 			$("#winTramite").find(".modal-header").css("background", "white").css("color", "black");
 		*/
-		if (tramite.documentacion == null)
+		if (tramite.documentacion == null || tramite.documentacion == undefined || tramite.documentacion == '')
 			$("#winTramite").find("[campo=documentacion]").hide();
 			
 		if (tramite.icono != undefined && tramite.icono != ''){
 			$("#winTramite").find(".icono").attr("src", server + tramite.icono);
-			$("#winTramite").find(".modal-header").css("background-image", "url(" + server + tramite.icono + ")");
+			$//("#winTramite").find(".modal-header").css("background-image", "url(" + server + tramite.icono + ")");
 		}else{
 			$("#winTramite").find(".icono").attr("src", "img/logoSinNombre.png");
-			$("#winTramite").find(".modal-header").css("background-image", "");
+			//$("#winTramite").find(".modal-header").css("background-image", "");
 		}
 			
 		$("#winTramite").find("#btnSolicitar").attr("datos", $(e.relatedTarget).attr("datos"));

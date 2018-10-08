@@ -52,7 +52,7 @@ $(document).ready(function(){
 	plantillas["registro"] = "";
 	
 	getPlantillas(function(){
-		callIndex();
+		callRegistro();
 	});
 	//app.onDeviceReady();
 });

@@ -1,6 +1,7 @@
 function callIndex(){
-	$("[modulo]").html(plantillas["index"]);
-	setPanel();
+	//$("[modulo]").html(plantillas["index"]);
+	//setPanel();
+	callRegistro();
 }
 
 function callLogout(){
