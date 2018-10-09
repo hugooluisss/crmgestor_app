@@ -163,9 +163,13 @@ function callSolicitar(tramite, vehiculo){
 				if (resp.band){
 					
 					var fotografias = new Array;
+					for(i = 0 ; i < 10 ; i++){
+						fotografias[i] = new Array;
+						fotografias[i]['code'] = "";
+						fotografias[i]['nombre'] = "";
+					}
 					i = 0;
 					$(".imgDoc[add=1]").each(function(){
-						fotografias[i] = new Array;
 						fotografias[i]['code'] = $(this).attr("src2");
 						fotografias[i]['nombre'] = $(this).attr("nombre");
 						i++;
