@@ -11,6 +11,7 @@ TOrden = function(){
 				"observaciones": datos.observaciones,
 				"carro": datos.carro,
 				"action": "add",
+				"imagenes": datos.imagenes
 				"movil": true
 			}, function(data){
 				if (data.band == false)
