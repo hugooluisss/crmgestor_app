@@ -54,6 +54,8 @@ $(document).ready(function(){
 	plantillas["tramite"] = "";
 	plantillas["solicitar"] = "";
 	plantillas["documento"] = "";
+	plantillas["tramites"] = "";
+	plantillas["detalleTramite"] = "";
 	/*
 	plantillas["ordenes"] = "";
 	plantillas["orden"] = "";
@@ -81,6 +83,9 @@ function callPanel(panel){
 		break;
 		case 'ordenes':
 			callOrdenes();
+		break;
+		case 'tramites':
+			callTramites();
 		break;
 		case 'logout':
 			callLogout();
