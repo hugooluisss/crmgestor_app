@@ -89,7 +89,6 @@ function callSolicitar(tramite, vehiculo){
 			$("#txtComentario").select();
 		}
 		
-		band = true;
 		if (band){
 			$("#winPago").modal();
 		}
@@ -105,7 +104,7 @@ function callSolicitar(tramite, vehiculo){
 		img.attr("src", "data:image/jpeg;base64," + imageURI);
 		img.attr("src2", imageURI);
 		img.attr("add", 1);
-		if ($(".imgDoc[add=1]").length == 0 && tramite.cita == 1)
+		if ($(".imgDoc[add=0]").length == 0 && tramite.cita == 1)
 			$("#panelCita").show();
 	}
 	
