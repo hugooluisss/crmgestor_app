@@ -6,6 +6,7 @@ function callAutos(){
 	console.info("Carga de autos finalizada");
 	
 	d = new Date;
+	
 	for(anio = 1980 ; anio <= d.getFullYear() ; anio++){
 		$("#selModelo").append($("<option />", {
 			value: anio,

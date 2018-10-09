@@ -39,6 +39,85 @@
 <div class="fixed-bottom">
 	<div class="col-12">
 		<button class="btn btn-danger btn-block" id="btnPagar" campo="precio" before="Pagar ">Pagar</button>
+		<button class="btn btn-gray btn-block" id="btnAtras">Escoger otro servicio</button>
 		<br />
 	</div>
 </div>
+
+
+
+
+<form onsubmit="javascript: return false" method="post" id="frmPago" name="frmPago" action="">
+	<div id="winPago" class="modal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-body">
+					<script type="text/javascript" src="https://cdn.conekta.io/js/latest/conekta.js"></script>
+					
+					<div class="row">
+						<div class="col-12 text-center">
+							<img src="img/conekta_logo.png" />
+						</div>
+					</div>
+					<br /><br />
+					<div class="form-group row">
+						<label for="email" class="col-12">Nombre del tarjetahabiente</label>
+						<div class="col-12">
+							<input type="text" class="form-control name col-12" data-conekta="card[name]"/>
+						</div>
+					</div>
+					
+					<div class="form-group row">
+						<label for="email" class="col-12">Número de tarjeta</label>
+						<div class="col-12">
+							<input type="text" class="form-control number col-12" data-conekta="card[number]" placeholder=""/>
+						</div>
+					</div>
+					
+					<div class="form-group row">
+						<label for="email" class="col-12">Expira</label>
+						<div class="col-6">
+							<select data-conekta="card[exp_month]" class="form-control exp_month">
+								<option value="01">Enero</option>
+								<option value="02">Febrero</option>
+								<option value="03">Marzo</option>
+								<option value="04">Abril</option>
+								<option value="05">Mayo</option>
+								<option value="06">Junio</option>
+								<option value="07">Julio</option>
+								<option value="08">Agosto</option>
+								<option value="09">Septiembre</option>
+								<option value="10">Octubre</option>
+								<option value="11">Noviembre</option>
+								<option value="12">Diciembre</option>
+							</select>
+						</div>
+						<div class="col-6">
+							<select class="form-control exp_year col-" data-conekta="card[exp_year]"></select>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="email" class="col-12">CVC</label>
+						<div class="col-4">
+							<input type="text" class="form-control cvc col-12" data-conekta="card[cvc]" placeholder="CVC"/>
+						</div>
+						<div class="col-5 offset-3 text-center">
+							<img src="img/visa.png" style="width: 100%" />
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="row">
+							<div class="col-6 col-offset-3 text-center">
+								<input type="hidden" name='conektaTokenId' id="conektaTokenId" />
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id="submitPago">Pagar ahora</button>
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>

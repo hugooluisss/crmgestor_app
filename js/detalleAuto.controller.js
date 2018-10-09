@@ -4,6 +4,7 @@ function callDetalleAuto(id){
 	setPanel($("#modulo"));
 	$(".modal-backdrop").remove();
 	idCarro = id;
+	vehiculo = undefined;
 	
 	var d = new Date();
 	fin = d.getFullYear() + 10;
@@ -12,7 +13,9 @@ function callDetalleAuto(id){
 		$(".exp_year").append($('<option value="' + anio + '">' + anio + '</option>'));
 		
 	d = new Date;
-	for(anio = 1980 ; anio <= d.getFullYear() ; anio++){
+	fin = d.getFullYear() + ((d.getMonth() > 3)?1:0);
+	console.log(fin);
+	for(anio = 1980 ; anio <= fin ; anio++){
 		$("#selModelo").append($("<option />", {
 			value: anio,
 			text: anio
@@ -30,6 +33,7 @@ function callDetalleAuto(id){
 		"action": "getData",
 		"movil": true
 	}, function(datos){
+		vehiculo = datos;
 		setDatos($("#modulo"), datos);
 	}, "json");
 	
@@ -151,7 +155,7 @@ function callDetalleAuto(id){
 		var tramite = JSON.parse($("#winTramite").attr("datos"));
 		$("#winTramite").modal("hide");
 		$(".modal-backdrop").remove();
-		callSolicitar(tramite);
+		callSolicitar(tramite, vehiculo);
 	});
 	
 	/*

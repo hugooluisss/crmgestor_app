@@ -1,5 +1,5 @@
-function callSolicitar(tramite){
-	console.log(tramite);
+function callSolicitar(tramite, vehiculo){
+	console.log(tramite, vehiculo);
 	console.info("Llamando a Solicitar");
 	$("#tituloModulo").html("Solicitar trámite");
 	$("#modulo").attr("modulo", "solicitar").html(plantillas["solicitar"]);
@@ -16,6 +16,12 @@ function callSolicitar(tramite){
 		step: 30
 	});
 	
+	var d = new Date();
+	fin = d.getFullYear() + 10;
+	
+	for(anio = d.getFullYear() ; anio < fin ; anio++)
+		$(".exp_year").append($('<option value="' + anio + '">' + anio + '</option>'));
+	
 	for(i in tramite.documentacion){
 		doc = $(plantillas["documento"]);
 		objDoc = tramite.documentacion[i];
@@ -24,6 +30,7 @@ function callSolicitar(tramite){
 		
 		$(".documentos").append(doc);
 		doc.find("[campo=nombre]").text(objDoc);
+		doc.find("img").attr("nombre", objDoc);
 		doc.find(".btnCamara").attr("documento", objDoc);
 		doc.find(".btnCamara").click(function(){
 			var el = $(this);
@@ -82,6 +89,12 @@ function callSolicitar(tramite){
 			$("#txtComentario").select();
 		}
 		
+		band = true;
+		if (band){
+			$("#winPago").modal();
+		}
+		
+		
 		console.log(band);
 	});
 	
@@ -95,4 +108,93 @@ function callSolicitar(tramite){
 		if ($(".imgDoc[add=1]").length == 0 && tramite.cita == 1)
 			$("#panelCita").show();
 	}
+	
+	$("#winPago").on('show.bs.modal', function(e){
+		//var tramite = JSON.parse($("#winTramite").attr("datos"));
+		$("#winPago").find("#submitPago").html("Pagar $ " + tramite.precio + " ahora");
+		
+		$(".name").val("hugo Santiago");
+		$(".number").val("4242424242424242");
+		$(".cvc").val("121");
+		$(".exp_month").val("11");
+		$(".exp_year").val("2018");
+	});
+	
+	$("#winPago").find("#submitPago").click(function(){
+		var $form = $("#frmPago");
+		Conekta.setPublicKey(publicConekta);
+		Conekta.setLanguage("es"); 
+		//var tramite = JSON.parse($("#winTramite").attr("datos"));
+
+		$("#winPago").find("#submitPago").prop("disabled", true);
+		blockUI("Estamos procesando el pago");
+		Conekta.Token.create($form, function(token){
+			$("#conektaTokenId").val(token.id);
+			
+			$.post(server + 'cpagos', {
+				"token": token.id,
+				"cliente": objUsuario.idUsuario,
+				"tramite": tramite.idTramite,
+				"movil": 1,
+				"action": "addPagoConekta"
+			}, function(resp){
+				$form.find("button").prop("disabled", false);
+				
+				if (resp.band){
+					
+					var fotografias = new Array;
+					i = 0;
+					$(".imgDoc[add=1]").each(function(){
+						fotografias[i] = new Array;
+						fotografias[i]['code'] = $(this).attr("src2");
+						fotografias[i]['nombre'] = $(this).attr("nombre");
+						i++;
+					});
+					console.log(fotografias);
+					
+					var orden = new TOrden;
+					orden.add({
+						"cliente": objUsuario.idUsuario,
+						"tramite": tramite.idTramite,
+						"carro": vehiculo.idAuto,
+						"observaciones": $("#txtComentarios").val(),
+						"imagenes": fotografias,
+						"action": "add",
+						"fn": {
+							before: function(){
+								$form.find("button").prop("disabled", true); 
+							}, after: function(resp){
+								$form.find("button").prop("disabled", false);
+								unBlockUI();
+
+								if (resp.band){
+									$("#winPago").modal("hide");
+									$("#winTramite").modal("hide");
+									
+									callAutos();
+									mensajes.alert({"titulo": "Registro completo", "mensaje": "Listo, te mantendremos informado sobre el avance de tu servicio"});
+								}else
+									mensajes.alert({"titulo": "Error", "mensaje": "No se pudo procesar el pago"});
+							}
+						}
+					});
+				}else{
+					mensajes.alert({"titulo": "Error", "mensaje": "No pudo ser procesado el pago"});
+					unBlockUI();
+				}
+			}, "json");
+
+		}, function(response) {
+			var $form = $("#frmEnvio");
+			unBlockUI();
+			mensajes.alert({"titulo": "Conekta", "mensaje": response.message_to_purchaser});
+			$form.find("button").prop("disabled", false);
+			
+			unBlockUI();
+		});
+	});
+	
+	$("#btnAtras").click(function(){
+		callDetalleAuto(vehiculo.idAuto);
+	});
 }
