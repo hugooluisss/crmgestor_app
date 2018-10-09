@@ -92,18 +92,22 @@ function callSolicitar(tramite, vehiculo){
 		if ($(".imgDoc[add=0]").length > 1){
 			band = false;
 			mensajes.log({"mensaje": "Agrega las fotografías de tu documentación"});
+			$('#tabsServicio a[href="#documentacion"]').tab('show');
 		}
 		
-		if (band && tramite.cita && $("#txtFecha").val() == ''){
+		if (band && tramite.cita && $("#txtFechaCita").val() == ''){
 			band = false;
 			mensajes.log({"mensaje": "Indica la fecha para agendar tu cita"});
-			$("#txtFecha").select();
+			//$('#tabsServicio li:first-child a').tab('show');
+			$('#tabsServicio a[href="#cita"]').tab('show');
+			$("#txtFechaCita").focus();
 		}
 		
-		if (band && tramite.cita && $("#txtComentarios").val() == ''){
+		if (band && tramite.cita && $("#txtComentarioCita").val() == ''){
 			band = false;
 			mensajes.log({"mensaje": "Escribe un comentario para el gestor"});
-			$("#txtComentario").select();
+			$('#tabsServicio a[href="#cita"]').tab('show');
+			$("#txtComentarioCita").focus();
 		}
 		
 		if (band){
@@ -166,8 +170,12 @@ function callSolicitar(tramite, vehiculo){
 						fotografias[i]['nombre'] = $(this).attr("nombre");
 						i++;
 					});
-					console.log(fotografias);
+					//console.log(fotografias);
 					
+					var cita = new Array;
+					cita['fecha'] = $("#txtFechaCita").val();
+					cita['comentario'] = $("#txtComentarioCita").val();
+					console.log(cita);
 					var orden = new TOrden;
 					orden.add({
 						"cliente": objUsuario.idUsuario,
@@ -175,6 +183,7 @@ function callSolicitar(tramite, vehiculo){
 						"carro": vehiculo.idAuto,
 						"observaciones": $("#txtComentarios").val(),
 						"imagenes": fotografias,
+						"cita": cita,
 						"action": "add",
 						"fn": {
 							before: function(){
