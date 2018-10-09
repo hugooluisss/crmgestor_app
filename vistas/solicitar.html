@@ -5,47 +5,60 @@
 	</div>
 </div>
 
-<div class="row">
-	<div class="col-12">
-		<h4>Documentación necesaria</h4>
-		<p>Para iniciar tu trámite es necesario que nos envíes foto de lo siguiente</p>
-		
-		<div class="row documentos"></div>
+<ul class="nav nav-justified nav-tabs nav-red" id="tabsServicio" role="tablist">
+	<li class="nav-item">
+		<a class="nav-link" id="documentacion-tab" data-toggle="tab" href="#documentacion" role="tab" aria-controls="documentacion" aria-selected="true">Documentación</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" id="cita-tab" data-toggle="tab" href="#cita" role="tab" aria-controls="cita" aria-selected="false">Cita</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" id="profile-tab" data-toggle="tab" href="#confirmar" role="tab" aria-controls="confirmar" aria-selected="false">Confirmar</a>
+	</li>
+</ul>
+
+
+
+<div class="tab-content">
+	<div class="tab-pane fade show active" id="documentacion" role="tabpanel" aria-labelledby="home-tab">
+		<div class="col-12">
+			<h4>Documentación necesaria</h4>
+			<p>Para iniciar tu trámite es necesario que nos envíes foto de lo siguiente</p>
+			
+			<div class="row documentos"></div>
+		</div>
 	</div>
-</div>
-<br />
-<div class="row" id="panelCita">
-	<div class="col-12">
-		<h4>Agenda una cita</h4>
-		<p>Ya con tu información completa será necesario agendar una cita</p>
-		
-		<form id="frmAddCita">
-			<div class="row">
-				<div class="col-12">
-					<input type="text" class="form-control form-control-sm" id="txtFechaCita" name="txtFechaCita" placeholder="¿Cuando y a que hora?" readonly="true" />
+	<div class="tab-pane fade" id="cita" role="tabpanel" aria-labelledby="profile-tab">
+		<div class="col-12">
+			<h4>Agenda una cita</h4>
+			<p>Para realizar tu trámite será necesario agendar una cita</p>
+			
+			<form id="frmAddCita">
+				<div class="row">
+					<div class="col-12">
+						<input type="text" class="form-control form-control-sm" id="txtFechaCita" name="txtFechaCita" placeholder="¿Cuando y a que hora?" readonly="true" />
+					</div>
 				</div>
-			</div>
-			<br />
-			<div class="row">
-				<div class="col-12">
-					<textarea class="form-control form-control-sm" id="txtComentario" name="txtComentario" placeholder="Escribele un mensaje al gestor" rows="5"></textarea>
+				<br />
+				<div class="row">
+					<div class="col-12">
+						<textarea class="form-control form-control-sm" id="txtComentario" name="txtComentario" placeholder="Escribele un mensaje al gestor" rows="5"></textarea>
+					</div>
 				</div>
-			</div>
-			<br />
-		</form>
+				<br />
+			</form>
+		</div>
+	</div>
+	<div class="tab-pane fade" id="confirmar" role="tabpanel" aria-labelledby="profile-tab">
+		<div class="col-12">
+			<h4>Listo, estamos listos para atender tu solicitud</h4>
+			<button class="btn btn-danger btn-block" id="btnPagar" campo="precio" before="Pagar ">Pagar</button>
+			<!--<button class="btn btn-gray btn-block" id="btnAtras">Escoger otro servicio</button>-->
+		</div>
 	</div>
 </div>
 
-<div class="fixed-bottom">
-	<div class="col-12">
-		<button class="btn btn-danger btn-block" id="btnPagar" campo="precio" before="Pagar ">Pagar</button>
-		<button class="btn btn-gray btn-block" id="btnAtras">Escoger otro servicio</button>
-		<br />
-	</div>
-</div>
-
-
-
+<button id="btnAtras" class="btn btn-regresar"><i class="fa fa-3x fa-chevron-circle-left" aria-hidden="true"></i></button>
 
 <form onsubmit="javascript: return false" method="post" id="frmPago" name="frmPago" action="">
 	<div id="winPago" class="modal" tabindex="-1" role="dialog">

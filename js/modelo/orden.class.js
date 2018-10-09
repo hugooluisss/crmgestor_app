@@ -12,6 +12,7 @@ TOrden = function(){
 				"carro": datos.carro,
 				"action": "add",
 				"imagenes": datos.imagenes,
+				"cita": datos.cita,
 				"movil": true
 			}, function(data){
 				if (data.band == false)

@@ -6,7 +6,7 @@ function callSolicitar(tramite, vehiculo){
 	setPanel($("#modulo"));
 	console.info("Carga finalizada");
 	
-	$("#panelCita").hide();
+	//$("#panelCita").hide();
 	
 	setDatos($("#modulo"), tramite);
 	$(".tramite").css("background-image", "url(" + server + tramite.icono + ")");
@@ -22,53 +22,70 @@ function callSolicitar(tramite, vehiculo){
 	for(anio = d.getFullYear() ; anio < fin ; anio++)
 		$(".exp_year").append($('<option value="' + anio + '">' + anio + '</option>'));
 	
+	cont = 0;
 	for(i in tramite.documentacion){
 		doc = $(plantillas["documento"]);
 		objDoc = tramite.documentacion[i];
-		console.info(objDoc);
-		//doc.find("img").attr("src", objDoc.archivo == ''?'img/documento.png':(server + objDoc.archivo + "?" + Math.floor((Math.random() * 10000) + 1)));
-		
-		$(".documentos").append(doc);
-		doc.find("[campo=nombre]").text(objDoc);
-		doc.find("img").attr("nombre", objDoc);
-		doc.find(".btnCamara").attr("documento", objDoc);
-		doc.find(".btnCamara").click(function(){
-			var el = $(this);
-			navigator.camera.getPicture(function(imageURI){
-				agregarFoto(imageURI, el);
-			}, function(message){
-				alertify.error("Ocurrio un error al obtener la imagen");
-			}, {
-				quality: 100,
-				destinationType: Camera.DestinationType.DATA_URL,
-				encodingType: Camera.EncodingType.JPEG,
-				targetWidth: 800,
-				targetHeight: 800,
-				correctOrientation: true,
-				allowEdit: false,
-				saveToPhotoAlbum: true
+		if (objDoc != ''){
+			cont++;
+			console.info(objDoc);
+			//doc.find("img").attr("src", objDoc.archivo == ''?'img/documento.png':(server + objDoc.archivo + "?" + Math.floor((Math.random() * 10000) + 1)));
+			
+			$(".documentos").append(doc);
+			doc.find("[campo=nombre]").text(objDoc);
+			doc.find("img").attr("nombre", objDoc);
+			doc.find(".btnCamara").attr("documento", objDoc);
+			doc.find(".btnCamara").click(function(){
+				var el = $(this);
+				navigator.camera.getPicture(function(imageURI){
+					agregarFoto(imageURI, el);
+				}, function(message){
+					alertify.error("Ocurrio un error al obtener la imagen");
+				}, {
+					quality: 100,
+					destinationType: Camera.DestinationType.DATA_URL,
+					encodingType: Camera.EncodingType.JPEG,
+					targetWidth: 800,
+					targetHeight: 800,
+					correctOrientation: true,
+					allowEdit: false,
+					saveToPhotoAlbum: true
+				});
 			});
-		});
-		
-		doc.find(".btnGaleria").attr("documento", objDoc);
-		doc.find(".btnGaleria").click(function(){
-			var el = $(this);
-			navigator.camera.getPicture(function(imageURI){
-				agregarFoto(imageURI, el);
-			}, function(message){
-				alertify.error("Ocurrio un error al obtener la imagen");
-			}, {
-				quality: 100,
-				destinationType: Camera.DestinationType.DATA_URL,
-				encodingType: Camera.EncodingType.JPEG,
-				targetWidth: 800,
-				targetHeight: 800,
-				correctOrientation: true,
-				allowEdit: false,
-				sourceType: navigator.camera.PictureSourceType.SAVEDPHOTOALBUM
+			
+			doc.find(".btnGaleria").attr("documento", objDoc);
+			doc.find(".btnGaleria").click(function(){
+				var el = $(this);
+				navigator.camera.getPicture(function(imageURI){
+					agregarFoto(imageURI, el);
+				}, function(message){
+					alertify.error("Ocurrio un error al obtener la imagen");
+				}, {
+					quality: 100,
+					destinationType: Camera.DestinationType.DATA_URL,
+					encodingType: Camera.EncodingType.JPEG,
+					targetWidth: 800,
+					targetHeight: 800,
+					correctOrientation: true,
+					allowEdit: false,
+					sourceType: navigator.camera.PictureSourceType.SAVEDPHOTOALBUM
+				});
 			});
-		});
+		}
 	}
+	
+	if(cont == 0){
+		$("#documentacion").remove();
+		$("#documentacion-tab").parent().remove();
+	}
+	
+	if (tramite.cita == 0){
+		$("#cita").remove();
+		$("#cita-tab").parent().remove();
+	}
+	
+	$('#tabsServicio li:first-child a').tab('show');
+	
 	
 	$("#btnPagar").click(function(){
 		var band = true;
