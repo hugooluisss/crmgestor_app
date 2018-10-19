@@ -9,7 +9,7 @@ function callTramites(){
 	
 	function getLista(){
 		$("#listaTramites").find("li").remove();
-		$.post(server + "listatramites", {
+		$.post(server + "listatramitesapp", {
 			"json": true,
 			"movil": true,
 		}, function(tramites){

@@ -120,9 +120,9 @@ function callSolicitar(tramite, vehiculo){
 	
 	function agregarFoto(imageURI, el){
 		//blockUI();
-		var img = el.parent().find("img");
-	
-		img.attr("src", "data:image/jpeg;base64," + imageURI);
+		var img = el.parent().parent();
+		
+		img.css("background", "data:image/jpeg;base64," + imageURI);
 		img.attr("src2", imageURI);
 		img.attr("add", 1);
 		if ($(".imgDoc[add=0]").length == 0 && tramite.cita == 1)
