@@ -122,7 +122,7 @@ function callSolicitar(tramite, vehiculo){
 		//blockUI();
 		var img = el.parent().parent();
 		
-		img.css("background", "data:image/jpeg;base64," + imageURI);
+		img.css("background-image", "url(data:image/jpeg;base64," + imageURI + ")");
 		img.attr("src2", imageURI);
 		img.attr("add", 1);
 		if ($(".imgDoc[add=0]").length == 0 && tramite.cita == 1)
