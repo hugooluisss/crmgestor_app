@@ -33,7 +33,7 @@ function callSolicitar(tramite, vehiculo){
 			
 			$(".documentos").append(doc);
 			doc.find("[campo=nombre]").text(objDoc);
-			doc.find("img").attr("nombre", objDoc);
+			doc.attr("nombre", objDoc);
 			doc.find(".btnCamara").attr("documento", objDoc);
 			doc.find(".btnCamara").click(function(){
 				var el = $(this);
