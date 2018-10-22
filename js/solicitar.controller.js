@@ -89,7 +89,7 @@ function callSolicitar(tramite, vehiculo){
 	
 	$("#btnPagar").click(function(){
 		var band = true;
-		if ($("[add=0]").length > 1){
+		if ($("[add=0]").length < 1){
 			band = false;
 			mensajes.log({"mensaje": "Agrega las fotografías de tu documentación"});
 			$('#tabsServicio a[href="#documentacion"]').tab('show');
@@ -108,6 +108,13 @@ function callSolicitar(tramite, vehiculo){
 			mensajes.log({"mensaje": "Escribe un comentario para el gestor"});
 			$('#tabsServicio a[href="#cita"]').tab('show');
 			$("#txtComentarioCita").focus();
+		}
+		
+		if (band && tramite.cita && $("#txtDireccion").val() == ''){
+			band = false;
+			mensajes.log({"mensaje": "Indícanos tu dirección, a esta te enviaremos tus documentos"});
+			$('#tabsServicio a[href="#confirmar"]').tab('show');
+			$("#txtDireccion").focus();
 		}
 		
 		if (band){
@@ -188,6 +195,7 @@ function callSolicitar(tramite, vehiculo){
 						"observaciones": $("#txtComentarios").val(),
 						"imagenes": fotografias,
 						"cita": cita,
+						"direccion": $("#txtDireccion").val(),
 						"action": "add",
 						"fn": {
 							before: function(){

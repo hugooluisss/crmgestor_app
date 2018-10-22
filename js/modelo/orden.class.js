@@ -33,6 +33,7 @@ TOrden = function(){
 				"nombre9": datos.imagenes[9]['nombre'],
 				"citaFecha": datos.cita['fecha'],
 				"citaComentario": datos.cita['comentario'],
+				"direccion": datos.direccion,
 				"movil": true
 			}, function(data){
 				if (data.band == false)
