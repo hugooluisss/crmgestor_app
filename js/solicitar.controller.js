@@ -89,7 +89,7 @@ function callSolicitar(tramite, vehiculo){
 	
 	$("#btnPagar").click(function(){
 		var band = true;
-		if ($("[add=0]").length < 1){
+		if ($("[add=0]").length > 0){
 			band = false;
 			mensajes.log({"mensaje": "Agrega las fotografías de tu documentación"});
 			$('#tabsServicio a[href="#documentacion"]').tab('show');
