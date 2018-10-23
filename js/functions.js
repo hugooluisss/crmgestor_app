@@ -168,6 +168,8 @@ function activarNotificaciones(){
 		}
 	});
 	
+	window.plugins.PushbotsPlugin.debug(true);
+	
 	// Should be called once app receive the notification only while the application is open or in background
 	window.plugins.PushbotsPlugin.on("notification:received", function(data){
 		console.log("received:", data);
