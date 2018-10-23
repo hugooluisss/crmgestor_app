@@ -196,6 +196,7 @@ function activarNotificaciones(){
 	// Should be called once the device is registered successfully with Apple or Google servers
 	window.plugins.PushbotsPlugin.on("registered", function(token){
 		console.log("Token de registro", token);
+		window.plugins.PushbotsPlugin.setAlias("usuario_" + objUsuario.idUsuario);
 		alertify.success("Usuario en linea");
 	});
 	
