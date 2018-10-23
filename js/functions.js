@@ -1,5 +1,5 @@
 server = "http://dashboard.nomastenencias.com/";
-server = "http://192.168.2.2/crm_gestor/";
+//server = "http://192.168.2.2/crm_gestor/";
 //server = "http://localhost/crm_gestor/";
 
 var idUsuario = undefined;
