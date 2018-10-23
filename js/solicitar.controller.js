@@ -33,7 +33,7 @@ function callSolicitar(tramite, vehiculo){
 			
 			$(".documentos").append(doc);
 			doc.find("[campo=nombre]").text(objDoc);
-			doc.find("img").attr("nombre", objDoc);
+			doc.attr("nombre", objDoc);
 			doc.find(".btnCamara").attr("documento", objDoc);
 			doc.find(".btnCamara").click(function(){
 				var el = $(this);
@@ -45,8 +45,8 @@ function callSolicitar(tramite, vehiculo){
 					quality: 100,
 					destinationType: Camera.DestinationType.DATA_URL,
 					encodingType: Camera.EncodingType.JPEG,
-					targetWidth: 800,
-					targetHeight: 800,
+					targetWidth: 600,
+					targetHeight: 600,
 					correctOrientation: true,
 					allowEdit: false,
 					saveToPhotoAlbum: true
@@ -64,8 +64,8 @@ function callSolicitar(tramite, vehiculo){
 					quality: 100,
 					destinationType: Camera.DestinationType.DATA_URL,
 					encodingType: Camera.EncodingType.JPEG,
-					targetWidth: 800,
-					targetHeight: 800,
+					targetWidth: 600,
+					targetHeight: 600,
 					correctOrientation: true,
 					allowEdit: false,
 					sourceType: navigator.camera.PictureSourceType.SAVEDPHOTOALBUM
@@ -89,7 +89,7 @@ function callSolicitar(tramite, vehiculo){
 	
 	$("#btnPagar").click(function(){
 		var band = true;
-		if ($(".imgDoc[add=0]").length > 1){
+		if ($("[add=0]").length > 0){
 			band = false;
 			mensajes.log({"mensaje": "Agrega las fotografías de tu documentación"});
 			$('#tabsServicio a[href="#documentacion"]').tab('show');
@@ -110,6 +110,13 @@ function callSolicitar(tramite, vehiculo){
 			$("#txtComentarioCita").focus();
 		}
 		
+		if (band && tramite.cita && $("#txtDireccion").val() == ''){
+			band = false;
+			mensajes.log({"mensaje": "Indícanos tu dirección, a esta te enviaremos tus documentos"});
+			$('#tabsServicio a[href="#confirmar"]').tab('show');
+			$("#txtDireccion").focus();
+		}
+		
 		if (band){
 			$("#winPago").modal();
 		}
@@ -120,9 +127,9 @@ function callSolicitar(tramite, vehiculo){
 	
 	function agregarFoto(imageURI, el){
 		//blockUI();
-		var img = el.parent().find("img");
-	
-		img.attr("src", "data:image/jpeg;base64," + imageURI);
+		var img = el.parent().parent();
+		
+		//img.css("background-image", "url(data:image/jpeg;base64," + imageURI + ")");
 		img.attr("src2", imageURI);
 		img.attr("add", 1);
 		if ($(".imgDoc[add=0]").length == 0 && tramite.cita == 1)
@@ -163,13 +170,13 @@ function callSolicitar(tramite, vehiculo){
 				if (resp.band){
 					
 					var fotografias = new Array;
-					for(i = 0 ; i < 10 ; i++){
+					for(i = 0 ; i < 30 ; i++){
 						fotografias[i] = new Array;
 						fotografias[i]['code'] = "";
 						fotografias[i]['nombre'] = "";
 					}
 					i = 0;
-					$(".imgDoc[add=1]").each(function(){
+					$("[add=1]").each(function(){
 						fotografias[i]['code'] = $(this).attr("src2");
 						fotografias[i]['nombre'] = $(this).attr("nombre");
 						i++;
@@ -188,6 +195,7 @@ function callSolicitar(tramite, vehiculo){
 						"observaciones": $("#txtComentarios").val(),
 						"imagenes": fotografias,
 						"cita": cita,
+						"direccion": $("#txtDireccion").val(),
 						"action": "add",
 						"fn": {
 							before: function(){

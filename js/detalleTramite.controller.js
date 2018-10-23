@@ -7,4 +7,8 @@ function callDetalleTramite(tramite){
 	$(".tramite").css("background-image", "url(" + server + tramite.icono + ")");
 	
 	setDatos($("#modulo"), tramite);
+	$("[campo=documentacion]").find("li").remove();
+	for (x in tramite.documentacion) {
+		$("[documentos]").append('<li class="list-group-item">' + tramite.documentacion[x] + '</li>');
+	}
 }
