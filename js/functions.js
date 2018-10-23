@@ -160,9 +160,9 @@ function getPlantillas(after){
 
 
 function activarNotificaciones(){
-	window.plugins.PushbotsPlugin.initialize("5b840a5a69b5ee631a277055", {
+	window.plugins.PushbotsPlugin.initialize("5bcf96b469b5ee396a35300b", {
 		"android":{
-			"sender_id":"588582936060",
+			"sender_id":"580777664404",
 			"icon": "icon",
 			"iconColor": "#FFFFFF"
 		}
@@ -196,6 +196,7 @@ function activarNotificaciones(){
 	// Should be called once the device is registered successfully with Apple or Google servers
 	window.plugins.PushbotsPlugin.on("registered", function(token){
 		console.log("Token de registro", token);
+		alertify.success("Usuario en linea");
 	});
 	
 	//Get device token
