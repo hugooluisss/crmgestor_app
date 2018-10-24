@@ -191,6 +191,7 @@ function callSolicitar(tramite, vehiculo){
 						"observaciones": $("#txtComentarios").val(),
 						"imagenes": data,
 						"cita": cita,
+						"imagenes": $("[add=1]"),
 						"direccion": $("#txtDireccion").val(),
 						"action": "add",
 						"fn": {
