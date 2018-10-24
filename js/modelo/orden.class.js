@@ -55,7 +55,6 @@ TOrden = function(){
 				contAjax = 0;
 				
 				$.each(datos.imagenes, function(i, img){
-					contAjax++;
 					var data = new FormData();
 					data.append("img", $(img).attr("src2"));
 					data.append("name", $(img).attr("nombre"));
@@ -74,15 +73,9 @@ TOrden = function(){
 							data = jQuery.parseJSON(data);
 							if (data.band == false)
 								console.log("No se guardó la imagen");
-								
-							contAjax--;
 						}
 					});
 				});
-				
-				while(contAjax != 0){
-					alert("Listo");
-				}
 				
 				if (datos.fn.after !== undefined)
 					datos.fn.after(data);
