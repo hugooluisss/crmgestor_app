@@ -20,7 +20,7 @@ TOrden = function(){
 			url: server + 'cordenes',
 			data: datos.imagenes,
 			processData: false,
-			contentType: false,
+			contentType: "multipart/form-data",
 			cahe: false,
 			type: 'POST',
 			success: function(data){
