@@ -204,9 +204,20 @@ function callSolicitar(tramite, vehiculo){
 								if (resp.band){
 									$("#winPago").modal("hide");
 									$("#winTramite").modal("hide");
-									
-									callAutos();
-									mensajes.alert({"titulo": "Registro completo", "mensaje": "Listo, te mantendremos informado sobre el avance de tu servicio"});
+									orden.sendMail({
+										"id": resp.id,
+										fn: {
+											before: function(){
+												blockUI("Actualizando información en el servidor");
+											},
+											after: function(resp){
+												unBlockUI();
+												
+												callAutos();
+												mensajes.alert({"titulo": "Registro completo", "mensaje": "Listo, te mantendremos informado sobre el avance de tu servicio"});
+											}
+										}
+									});
 								}else
 									mensajes.alert({"titulo": "Error", "mensaje": "No se pudo procesar el pago"});
 							}
