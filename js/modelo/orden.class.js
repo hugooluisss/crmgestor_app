@@ -61,6 +61,7 @@ TOrden = function(){
 					data.append("movil", true);
 					data.append("action", "uploadDocumentoApp");
 					data.append("orden", resp.id);
+					data.append("cita", resp.cita);
 					
 					$.ajax({
 						url: server + 'cordenes',
