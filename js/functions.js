@@ -159,7 +159,7 @@ function getPlantillas(after){
 };
 
 
-function activarNotificaciones(){
+function activarNotificaciones(fn){
 	window.plugins.PushbotsPlugin.initialize("5bcf96b469b5ee396a35300b", {
 		"android":{
 			"sender_id":"580777664404",
@@ -173,4 +173,7 @@ function activarNotificaciones(){
 	window.plugins.PushbotsPlugin.resetBadge();
 	window.plugins.PushbotsPlugin.toggleNotifications(true);
 	window.plugins.PushbotsPlugin.setAlias("usuario_" + objUsuario.idUsuario);
+	
+	if (fn.after !== undefined)
+		fn.after();
 }

@@ -8,6 +8,7 @@ TOrden = function(){
 		datos.imagenes.append("citaComentario", datos.cita['comentario']);
 		datos.imagenes.append("direccion", datos.direccion);
 		datos.imagenes.append("movil", true);
+		datos.imagenes.append("action", "add");
 		
 		console.log(datos.imagenes);
 		
