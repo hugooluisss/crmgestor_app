@@ -50,7 +50,7 @@ TOrden = function(){
 				"direccion": datos.direccion,
 				"movil": true
 			}, function(resp){
-				if (data.band == false)
+				if (resp.band == false)
 					console.log("No se guardó el registro");
 				var conAjax = 0;
 				
