@@ -21,6 +21,7 @@ TOrden = function(){
 			data: datos.imagenes,
 			processData: false,
 			contentType: false,
+			cahe: false,
 			type: 'POST',
 			success: function(data){
 				data = jQuery.parseJSON(data);
