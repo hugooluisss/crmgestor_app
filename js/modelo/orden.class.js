@@ -79,7 +79,7 @@ TOrden = function(){
 				});
 				
 				if (datos.fn.after !== undefined)
-					datos.fn.after(data);
+					datos.fn.after(resp);
 			}, "json");
 	};
 	
