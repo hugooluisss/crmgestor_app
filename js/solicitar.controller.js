@@ -172,7 +172,7 @@ function callSolicitar(tramite, vehiculo){
 					data.append("total", $("[add=1]").length);
 					i = 0;
 					$("[add=1]").each(function(){
-						data.append("img" + i++, $(this).attr("src2"));
+						data.append("img" + i, $(this).attr("src2"));
 						data.append("name" + i++, $(this).attr("nombre"));
 						//data.append("imagen" + i, $(this).attr("src2"));
 						//data.append("nombre" + i, $(this).attr("nombre"));
