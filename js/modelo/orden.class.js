@@ -4,6 +4,32 @@ TOrden = function(){
 	this.add = function(datos){
 		if (datos.fn.before !== undefined) datos.fn.before();
 		
+		campos.append("citaFecha", datos.cita['fecha']);
+		campos.append("citaComentario", datos.cita['comentario']);
+		campos.append("direccion", datos.direccion);
+		campos.append("movil", true);
+		
+		
+		$.ajax({
+			url: server + 'cordenes',
+			data: campos,
+			processData: false,
+			contentType: false,
+			type: 'POST',
+			success: function(data){
+				data = jQuery.parseJSON(data);
+				if (data.band == false)
+					console.log("No se guardó el registro");
+					
+				if (datos.fn.after !== undefined)
+					datos.fn.after(data);
+			}
+		});
+	}
+	/*
+	this.add = function(datos){
+		if (datos.fn.before !== undefined) datos.fn.before();
+		
 		$.post(server + 'cordenes', {
 				"id": datos.id,
 				"cliente": datos.cliente,
@@ -84,7 +110,7 @@ TOrden = function(){
 				if (datos.fn.after !== undefined)
 					datos.fn.after(data);
 			}, "json");
-	};
+	};*/
 	
 	this.del = function(datos){
 		if (datos.fn.before !== undefined) datos.fn.before();

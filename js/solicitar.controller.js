@@ -168,24 +168,18 @@ function callSolicitar(tramite, vehiculo){
 				$form.find("button").prop("disabled", false);
 				
 				if (resp.band){
-					
-					var fotografias = new Array;
-					for(i = 0 ; i < 30 ; i++){
-						fotografias[i] = new Array;
-						fotografias[i]['code'] = "";
-						fotografias[i]['nombre'] = "";
-					}
-					i = 0;
+					var data = new FormData();
+					data.append(total, $("[add=1]").length);
 					$("[add=1]").each(function(){
-						fotografias[i]['code'] = $(this).attr("src2");
-						fotografias[i]['nombre'] = $(this).attr("nombre");
-						i++;
+						data.append("img" + i, $(this).attr("src2"), $(this).attr("nombre"));
+						//data.append("imagen" + i, $(this).attr("src2"));
+						//data.append("nombre" + i, $(this).attr("nombre"));
 					});
-					//console.log(fotografias);
 					
 					var cita = new Array;
 					cita['fecha'] = $("#txtFechaCita").val();
 					cita['comentario'] = $("#txtComentarioCita").val();
+					
 					console.log(cita);
 					var orden = new TOrden;
 					orden.add({
