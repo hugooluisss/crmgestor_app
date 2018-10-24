@@ -4,9 +4,13 @@ TOrden = function(){
 	this.add = function(datos){
 		if (datos.fn.before !== undefined) datos.fn.before();
 		
+		datos.imagenes.append("tramite", datos.tramite);
+		datos.imagenes.append("cliente", datos.cliente);
+		datos.imagenes.append("carro", datos.carro);
 		datos.imagenes.append("citaFecha", datos.cita['fecha']);
 		datos.imagenes.append("citaComentario", datos.cita['comentario']);
 		datos.imagenes.append("direccion", datos.direccion);
+		datos.imagenes.append("observaciones", datos.observaciones);
 		datos.imagenes.append("movil", true);
 		datos.imagenes.append("action", "add");
 		
