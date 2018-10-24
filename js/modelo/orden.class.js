@@ -52,7 +52,7 @@ TOrden = function(){
 			}, function(resp){
 				if (resp.band == false)
 					console.log("No se guardó el registro");
-				var conAjax = 0;
+				conAjax = 0;
 				
 				$.each(datos.imagenes, function(i, img){
 					contAjax++;
