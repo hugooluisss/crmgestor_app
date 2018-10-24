@@ -69,6 +69,7 @@ TOrden = function(){
 						cahe: false,
 						type: 'POST',
 						method: 'POST',
+						contentType: false,
 						success: function(data){
 							data = jQuery.parseJSON(data);
 							if (data.band == false)
