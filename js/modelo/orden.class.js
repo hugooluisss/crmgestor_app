@@ -83,7 +83,7 @@ TOrden = function(){
 			}, "json");
 	};
 	
-	this.sendMail = function(){
+	this.sendMail = function(datos){
 		if (datos.fn.before !== undefined) datos.fn.before();
 		$.post(server + 'cordenes', {
 			"id": datos.id,
