@@ -169,7 +169,7 @@ function callSolicitar(tramite, vehiculo){
 				
 				if (resp.band){
 					var data = new FormData();
-					data.append(total, $("[add=1]").length);
+					data.append("total", $("[add=1]").length);
 					$("[add=1]").each(function(){
 						data.append("img" + i, $(this).attr("src2"), $(this).attr("nombre"));
 						//data.append("imagen" + i, $(this).attr("src2"));
