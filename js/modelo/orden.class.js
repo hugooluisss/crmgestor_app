@@ -88,6 +88,7 @@ TOrden = function(){
 		if (datos.fn.before !== undefined) datos.fn.before();
 		$.post(server + 'cordenes', {
 			"id": datos.id,
+			"cita": datos.cita,
 			"action": "sendMail",
 			"movil": true
 		}, function(data){
