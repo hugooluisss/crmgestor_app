@@ -51,7 +51,7 @@ TUsuario = function(chofer){
 	this.recuperarPass = function(correo, fn){
 		if (fn.before !== undefined) fn.before();
 		
-		$.post(server + 'cusuarios', {
+		$.post(server + 'cclientes', {
 				"correo": correo,
 				"action": 'recuperarPass',
 				"movil": '1'

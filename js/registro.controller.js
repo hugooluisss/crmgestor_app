@@ -61,7 +61,7 @@ function callRegistro(){
 							mensajes.log({
 								"mensaje": "Muchas gracias, tu registro está completo... ahora puedes iniciar sesión"
 							});
-							callIndex();
+							callPanel("login");
 						}
 					}
 				}

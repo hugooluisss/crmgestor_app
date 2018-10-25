@@ -9,9 +9,9 @@ function callLogin(){
 				if (str == '')
 					alertify.error("No se indicó un correo electrónico");
 				else{
-					var chofer = new TChofer;
+					var obj = new TUsuario;
 					
-					chofer.recuperarPass(str, {
+					obj.recuperarPass(str, {
 						before: function(){
 							$("#lnkLostPass").prop("disabled", true);
 							alertify.success("Gracias, enviaremos un correo a <b>" + str + "</b> para la recuperación de tu contraseña");

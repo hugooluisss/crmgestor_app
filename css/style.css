@@ -1,0 +1,457 @@
+.fontRoboto {
+  font-family: 'Roboto', sans-serif;
+}
+/*Colores*/
+body[layout="login"] {
+  background-image: url('../img/bgLogin.jpg');
+  background-color: black;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+body[layout="login"] .logo {
+  margin-top: 80px;
+  width: 100%;
+  max-width: 450px;
+}
+body[layout="login"] input {
+  border: 2px solid #B40404;
+  border-radius: 50px 50px 50px 50px;
+  -moz-border-radius: 50px 50px 50px 50px;
+  -webkit-border-radius: 50px 50px 50px 50px;
+  box-shadow: 2px 2px 5px #B40404;
+}
+body[layout="login"] footer {
+  position: absolute;
+  text-align: center;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  /* Set the fixed height of the footer here */
+  line-height: 60px;
+  /* Vertically center the text there */
+}
+body[layout="login"] footer .btn-danger {
+  color: white !important;
+}
+body[layout="login"] label.validateError {
+  color: white;
+  margin-bottom: 0px;
+  font-size: 14px;
+}
+body[layout="login"] input.validateError {
+  color: #B40404;
+  margin-bottom: 0px;
+  font-size: 14px;
+}
+body[layout="home"] {
+  background: #F2F2F2;
+  /*
+	#pie{
+		position: fixed;
+		bottom: 0px;
+		width: 100%;
+		height: @altoPie;
+		border-top: 1px solid @grisClaro;
+		color: white;
+		padding-top: 10px;
+		background: @bgPie;
+		background: url("../img/bghome.jpg");
+		
+		.row{
+			justify-content: center;
+			.boton{
+				text-align: center;
+				margin: auto;
+				i{
+					margin: auto;
+				}
+				
+				span{
+					font-size: 10px;
+					display: block;
+					margin: auto;
+				}
+			}
+		}
+	}
+	*/
+}
+body[layout="home"] #menuPrincipal {
+  background: white;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-bottom: 2px solid red;
+}
+body[layout="home"] #menuPrincipal #tituloModulo {
+  color: #4B9DEB;
+  font-family: 'Varela Round', sans-serif;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: bold;
+}
+body[layout="home"] #menuPrincipal .logo {
+  height: 35px;
+}
+body[layout="home"] #menuPrincipal a {
+  color: #B40404;
+}
+body[layout="home"] #menuPrincipal button {
+  color: #B40404;
+  border: none;
+}
+body[layout="home"] #menuPrincipal button span {
+  color: #B40404;
+}
+body[layout="home"] .ocultar {
+  display: none;
+}
+body[layout="home"] #modulo {
+  padding-top: 60px;
+  height: 100%;
+  overflow-y: scroll;
+  margin-bottom: 10px;
+}
+body[layout="home"] [modulo=detalleAuto] .icono {
+  width: 100%;
+}
+body[layout="home"] [modulo=detalleAuto] .automovil {
+  background-image: url("../img/automovil.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position-y: bottom;
+  color: white;
+  border-bottom: 5px solid #B40404;
+}
+body[layout="home"] [modulo=detalleAuto] #listaTramites .icono {
+  height: 30px;
+  width: 30px;
+}
+body[layout="home"] [modulo=detalleAuto] #listaTramites li {
+  background-position: center bottom;
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-size: 11px;
+  height: 70px;
+}
+body[layout="home"] [modulo=detalleAuto] #winTramite .modal-header img {
+  width: 35px;
+  height: 35px;
+}
+body[layout="home"] [modulo=detalleAuto] #winTramite .modal-header h3 {
+  font-size: 14px;
+}
+body[layout="home"] [modulo=detalleAuto] #winTramite [campo="descripcion"] {
+  font-size: 14px;
+}
+body[layout="home"] [modulo=ordenes] li {
+  border-radius: 0px 0px 0px 0px;
+  -moz-border-radius: 0px 0px 0px 0px;
+  -webkit-border-radius: 0px 0px 0px 0px;
+}
+body[layout="home"] [modulo=ordenes] li .icono {
+  height: 25px;
+}
+body[layout="home"] [modulo=ordenes] li .orden [campo=estado] {
+  font-size: 10px;
+}
+body[layout="home"] [modulo=detalleOrden] .documento img {
+  height: 60px;
+  margin-top: 20px;
+}
+body[layout="home"] [modulo=detalleOrden] .documento [campo=nombre] {
+  font-size: 9px;
+  height: 30px;
+}
+body[layout="home"] [modulo=detalleOrden] .card {
+  margin-top: 10px;
+}
+body[layout="home"] [modulo=detalleOrden] #dvConversacion {
+  height: 150px;
+  margin: auto;
+  border: 1px solid #B40404;
+  margin-bottom: 10px;
+  overflow-x: scroll;
+}
+body[layout="home"] [modulo=detalleOrden] #txtMensaje {
+  border: 1px solid #B40404;
+}
+body[layout="home"] [modulo=detalleOrden] #dvConversacion .mensaje {
+  font-size: 12px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background: #F2F2F2;
+}
+body[layout="home"] [modulo=detalleOrden] #dvConversacion .mensaje [campo=fecha] {
+  font-size: 8px;
+}
+body[layout="home"] [modulo=detalleOrden] .proximaCita {
+  margin-top: 15px;
+  font-size: 10px;
+}
+body[layout="home"] [modulo=autos] .automovil {
+  background-image: url("../img/automovil.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position-y: bottom;
+  height: 120px;
+  color: white;
+  vertical-align: bottom;
+  border-bottom: 5px solid #B40404;
+  border-radius: 0px 0px 0px 0px;
+  -moz-border-radius: 0px 0px 0px 0px;
+  -webkit-border-radius: 0px 0px 0px 0px;
+}
+body[layout="home"] [modulo=solicitar] .icono {
+  width: 100%;
+}
+body[layout="home"] [modulo=solicitar] h4 {
+  color: #B40404;
+  font-size: 14px;
+  margin-top: 20px;
+}
+body[layout="home"] [modulo=solicitar] .tramite {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position-y: bottom;
+  color: #B40404;
+  height: 100px;
+}
+body[layout="home"] [modulo=solicitar] .tramite [campo=nombre] {
+  background: rgba(255, 255, 255, 0.7);
+  bottom: 0px;
+  position: absolute;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 20px;
+}
+body[layout="home"] [modulo=solicitar] .tab-pane {
+  /*
+		.documento{
+			width: 45%;
+			margin-left: 2.5%;
+			margin-right: 2.5%;
+			
+			margin-top: 10px;
+			margin-bottom: 10px;
+			
+			background: rgba(192, 57, 43, .7);
+			padding-left: 5px;
+			padding-right: 5px;
+			color: white;
+			.bordesRedondos(20px);
+			
+			@media only screen and (min-width: @mq-sm-min) {
+				width: 30%;
+				margin-left: 1.5%;
+				margin-right: 1.5%;
+			}
+			
+			img{
+				height: 60px;
+				margin-top: 20px;
+			}
+			
+			[campo=nombre]{
+				font-size: 9px;
+				height: 30px;
+			}
+			
+			.btn-link{
+				color: white;
+			}
+		}
+		*/
+}
+body[layout="home"] [modulo=solicitar] .tab-pane p {
+  font-size: 13px;
+}
+body[layout="home"] [modulo=solicitar] .tab-pane ul {
+  margin-left: 0px;
+  padding-left: 0px;
+}
+body[layout="home"] [modulo=solicitar] .tab-pane ul li {
+  font-size: 12px;
+}
+body[layout="home"] [modulo=solicitar] .tab-pane ul li[add="0"] i.fa-check {
+  display: none;
+  position: absolute;
+  right: 5px;
+  top: 20px;
+  color: #B40404;
+}
+body[layout="home"] [modulo=solicitar] .tab-pane ul li[add="1"] i.fa-check {
+  position: absolute;
+  right: 5px;
+  top: 20px;
+  display: block;
+  color: #B40404;
+}
+body[layout="home"] [modulo=solicitar] #listaTramites .icono {
+  height: 30px;
+  width: 30px;
+}
+body[layout="home"] [modulo=solicitar] #listaTramites li {
+  background-position: center bottom;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 160px;
+}
+body[layout="home"] [modulo=tramites] #listaTramites .icono {
+  height: 30px;
+  width: 30px;
+}
+body[layout="home"] [modulo=tramites] #listaTramites li {
+  background-position: center bottom;
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-size: 13px;
+  height: 80px;
+}
+body[layout="home"] [modulo=detalleTramite] .tramite {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position-y: bottom;
+  color: white;
+  border-bottom: 5px solid #B40404;
+  height: 150px;
+}
+body[layout="home"] [modulo=detalleTramite] .tramite .card-body [campo=nombre] {
+  font-size: 20px;
+}
+body[layout="home"] [modulo=detalleTramite] .tramite .card-body * {
+  background: rgba(255, 255, 255, 0.6);
+  padding-left: 10px;
+  padding-right: 10px;
+  color: #B40404;
+}
+body[layout="home"] [modulo=detalleTramite] [documentos] li {
+  font-size: 11px;
+}
+.btn.btn-regresar {
+  position: fixed;
+  bottom: 10px;
+  right: 20px;
+  border: none;
+  box-shadow: none;
+  font-size: 16px;
+  font-family: arial;
+  vertical-align: middle;
+  color: #B40404;
+  z-index: 1;
+  background: none;
+}
+.btn.btn-regresar.btn-login {
+  top: 20px;
+  left: 20px;
+  right: inherit;
+  bottom: inherit;
+}
+.btn.btn-regresar span {
+  top: 8px;
+  position: absolute;
+  left: 45px;
+}
+.btn.btn-link.btn-danger {
+  color: #B40404;
+  border: none;
+}
+.btn.btn-gray {
+  background: #BDBDBD;
+}
+.btn.btn-primary {
+  background: #B40404;
+  border: 1px solid white;
+}
+.btn.btn-primary:active {
+  background: #B40404 !important;
+  border-color: #B40404 !important;
+}
+.btn-group-xs > .btn,
+.btn-xs {
+  padding: .25rem .4rem;
+  font-size: .875rem;
+  line-height: .5;
+  border-radius: .2rem;
+}
+a {
+  color: #EBB54B;
+}
+.text-primary {
+  color: #0431B4;
+}
+#WindowLoad {
+  position: fixed;
+  z-index: 9999;
+  text-align: center;
+  top: 0px;
+  opacity: .6;
+  background: black;
+  color: white;
+}
+#WindowLoad div {
+  font-size: 20px;
+  font-weight: bold;
+}
+.card {
+  padding-bottom: 10px;
+}
+.card .card-title {
+  margin: 5px;
+}
+.modal .modal-header {
+  background-color: #B40404;
+  color: white;
+  border-bottom: 1px solid #B40404;
+}
+.modal .modal-header .close {
+  color: white;
+  opacity: 1;
+}
+[modulo] label.validateError {
+  font-size: 12px;
+}
+.nav.nav-red {
+  background-color: #B40404;
+  color: white;
+}
+.nav.nav-red .nav-item a {
+  color: white;
+}
+.nav.nav-red .nav-item a.active {
+  background: red;
+}
+html,
+body {
+  margin: 0px;
+  height: 100%;
+  overflow: hidden;
+}
+html [panel],
+body [panel] {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  overflow: scroll;
+}
+html .row,
+body .row {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+html [modulo] > .row:last-child,
+body [modulo] > .row:last-child {
+  margin-bottom: 100px;
+}
+body .xdsoft_timepicker {
+  width: 38px !important;
+}
+body .xdsoft_datepicker {
+  width: 200px !important;
+}
+body .xdsoft_month {
+  width: 80px !important;
+}
+
+/*# sourceMappingURL=style.css.map */

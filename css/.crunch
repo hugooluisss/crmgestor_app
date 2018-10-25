@@ -1,0 +1,43 @@
+{
+	"files": {
+		"style.less": {
+			"engines": [
+				{
+					"compiler": "less",
+					"output": "style.css",
+					"options": {
+						"compress": false,
+						"ieCompat": false,
+						"strictMath": false,
+						"strictUnits": false,
+						"javascriptEnabled": false,
+						"sourceMap": true
+					}
+				}
+			],
+			"sources": [
+				"componentes/blockUI.less",
+				"componentes/buttons.less",
+				"componentes/card.less",
+				"componentes/funciones.less",
+				"componentes/import.less",
+				"componentes/modal.less",
+				"componentes/navs.less",
+				"componentes/text.less",
+				"componentes/validate.less",
+				"layout/home.less",
+				"layout/import.less",
+				"layout/login.less",
+				"layout/modulos/autos.less",
+				"layout/modulos/detalleAuto.less",
+				"layout/modulos/detalleOrden.less",
+				"layout/modulos/detalleTramite.less",
+				"layout/modulos/home.less",
+				"layout/modulos/ordenes.less",
+				"layout/modulos/solicitar.less",
+				"layout/modulos/tramites.less",
+				"variables.less"
+			]
+		}
+	}
+}
