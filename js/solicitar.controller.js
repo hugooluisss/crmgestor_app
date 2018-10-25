@@ -113,7 +113,7 @@ function callSolicitar(tramite, vehiculo){
 		if (band && tramite.cita && $("#txtDireccion").val() == ''){
 			band = false;
 			mensajes.log({"mensaje": "Indícanos tu dirección, a esta te enviaremos tus documentos"});
-			$('#tabsServicio a[href="#confirmar"]').tab('show');
+			$('#tabsServicio a[href="#cita"]').tab('show');
 			$("#txtDireccion").focus();
 		}
 		
