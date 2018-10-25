@@ -55,6 +55,7 @@ TOrden = function(){
 				contAjax = 0;
 				
 				$.each(datos.imagenes, function(i, img){
+					contAjax++;
 					var data = new FormData();
 					data.append("img", $(img).attr("src2"));
 					data.append("name", $(img).attr("nombre"));
@@ -79,8 +80,13 @@ TOrden = function(){
 					});
 				});
 				
-				if (datos.fn.after !== undefined)
-					datos.fn.after(resp);
+				temporizador = setInterval(function(){
+					if (contAjax >= datos.imagenes.length){
+						clearInterval(temporizador);
+						if (datos.fn.after !== undefined)
+							datos.fn.after(resp);
+					}
+				},5000);
 			}, "json");
 	};
 	
