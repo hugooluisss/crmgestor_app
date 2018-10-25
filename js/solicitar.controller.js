@@ -206,7 +206,7 @@ function callSolicitar(tramite, vehiculo){
 									$("#winTramite").modal("hide");
 									orden.sendMail({
 										"id": resp.id,
-										"cita": resp.cita
+										"cita": resp.cita,
 										fn: {
 											before: function(){
 												blockUI("Actualizando información en el servidor");
