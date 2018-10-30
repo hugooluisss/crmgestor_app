@@ -10,12 +10,11 @@ function callSolicitar(tramite, vehiculo){
 	permissions = cordova.plugins.permissions;
 	console.log(permissions.CAMERA);
 	permissions.hasPermission(permissions.CAMERA, function(status){
-		console.log(status);
 		if ( status.hasPermission )
 			console.log("Yes :D ");
 		else{
 			console.warn("No :( ");
-			permissions.requestPermission(permissions.CAMERA, function(){
+			permissions.requestPermission(permissions.CAMERA, function(status){
 				if(!status.hasPermission)
 					mensajes.alert({"titulo": "Camara", "mensaje": "Tu dispositivo no dió acceso a la cámara"});
 			}, function(){
