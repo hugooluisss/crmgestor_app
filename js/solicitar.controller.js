@@ -8,6 +8,20 @@ function callSolicitar(tramite, vehiculo){
 	
 	//$("#panelCita").hide();
 	
+	permissions.hasPermission(permissions.CAMERA, function( status ){
+		if ( status.hasPermission )
+			console.log("Yes :D ");
+		else{
+			console.warn("No :( ");
+			permissions.requestPermission(permissions.CAMERA, function(){
+				if(!status.hasPermission)
+					mensajes({"titulo": "Camara", "mensaje": "Tu dispositivo no dió acceso a la cámara"});
+			}, function(){
+				mensajes({"titulo": "Camara", "mensaje": "Tu dispositivo no dió acceso a la cámara"});
+			});
+		}
+	});
+	
 	setDatos($("#modulo"), tramite);
 	$(".tramite").css("background-image", "url(" + server + tramite.icono + ")");
 	jQuery.datetimepicker.setLocale('es');

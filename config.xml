@@ -45,11 +45,12 @@
 		<!-- A list of available plugins are available at https://build.phonegap.com/plugins -->
 
 		<!--<plugin name="cordova-plugin-barcodescanner" source="npm" />-->
-		<plugin name="cordova.plugins.diagnostic" source="npm" />
+		<!--<plugin name="cordova.plugins.diagnostic" source="npm" />-->
 		<plugin name="cordova-plugin-camera" source="npm" spec="2.4.1">
 			<variable name="CAMERA_USAGE_DESCRIPTION" value="Para tomar fotografias a tus documentos" />
 			<variable name="PHOTOLIBRARY_USAGE_DESCRIPTION" value="Obtiene fotografias de tus documentos en tu galeria" />
 		</plugin>
+		<plugin name="cordova-plugin-android-permissions" source="npm"/>
 		<plugin name="cordova-plugin-dialogs" source="npm"/>
 		<plugin name="cordova-plugin-network-information" source="npm"/>
 		<plugin name="cordova-plugin-device" source="npm"/>
