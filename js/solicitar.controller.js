@@ -7,7 +7,7 @@ function callSolicitar(tramite, vehiculo){
 	console.info("Carga finalizada");
 	
 	//$("#panelCita").hide();
-	var permissions = cordova.plugins.permissions;
+	permissions = cordova.plugins.permissions;
 	permissions.hasPermission(permissions.CAMERA, function( status ){
 		if ( status.hasPermission )
 			console.log("Yes :D ");
