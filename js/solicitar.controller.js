@@ -15,9 +15,9 @@ function callSolicitar(tramite, vehiculo){
 			console.warn("No :( ");
 			permissions.requestPermission(permissions.CAMERA, function(){
 				if(!status.hasPermission)
-					mensajes({"titulo": "Camara", "mensaje": "Tu dispositivo no dió acceso a la cámara"});
+					mensajes.alert({"titulo": "Camara", "mensaje": "Tu dispositivo no dió acceso a la cámara"});
 			}, function(){
-				mensajes({"titulo": "Camara", "mensaje": "Tu dispositivo no dió acceso a la cámara"});
+				mensajes.alert({"titulo": "Camara", "mensaje": "Tu dispositivo no dió acceso a la cámara"});
 			});
 		}
 	});
