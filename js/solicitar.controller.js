@@ -8,7 +8,9 @@ function callSolicitar(tramite, vehiculo){
 	
 	//$("#panelCita").hide();
 	permissions = cordova.plugins.permissions;
-	permissions.hasPermission(permissions.CAMERA, function( status ){
+	console.log(permissions.CAMERA);
+	permissions.hasPermission(permissions.CAMERA, function(status){
+		console.log(status);
 		if ( status.hasPermission )
 			console.log("Yes :D ");
 		else{
