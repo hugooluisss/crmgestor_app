@@ -5,7 +5,7 @@ function callSolicitar(tramite, vehiculo){
 	$("#modulo").attr("modulo", "solicitar").html(plantillas["solicitar"]);
 	setPanel($("#modulo"));
 	console.info("Carga finalizada");
-	
+	/*
 	//$("#panelCita").hide();
 	permissions = cordova.plugins.permissions;
 	console.log(permissions.CAMERA);
@@ -18,12 +18,13 @@ function callSolicitar(tramite, vehiculo){
 				console.log(status);
 				if(!status.hasPermission)
 					mensajes.alert({"titulo": "Camara", "mensaje": "Tu dispositivo no dió acceso a la cámara"});
+				
 			}, function(){
 				mensajes.alert({"titulo": "Camara", "mensaje": "Tu dispositivo no dió acceso a la cámara"});
 			});
 		}
 	});
-	
+	*/
 	setDatos($("#modulo"), tramite);
 	$(".tramite").css("background-image", "url(" + server + tramite.icono + ")");
 	jQuery.datetimepicker.setLocale('es');
