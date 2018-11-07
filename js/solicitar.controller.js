@@ -43,14 +43,15 @@ function callSolicitar(tramite, vehiculo){
 	for(i in tramite.documentacion){
 		doc = $(plantillas["documento"]);
 		objDoc = tramite.documentacion[i];
+		setDatos(doc, objDoc);
 		if (objDoc != ''){
 			cont++;
 			console.info(objDoc);
-			//doc.find("img").attr("src", objDoc.archivo == ''?'img/documento.png':(server + objDoc.archivo + "?" + Math.floor((Math.random() * 10000) + 1)));
 			
 			$(".documentos").append(doc);
-			doc.find("[campo=nombre]").text(objDoc);
-			doc.attr("nombre", objDoc);
+			doc.find("[campo=nombre]").text(objDoc.nombre);
+			doc.attr("nombre", objDoc.nombre);
+			doc.attr("fotos", 0);
 			doc.find(".btnCamara").attr("documento", objDoc);
 			doc.find(".btnCamara").click(function(){
 				var el = $(this);
@@ -120,14 +121,14 @@ function callSolicitar(tramite, vehiculo){
 			$('#tabsServicio a[href="#cita"]').tab('show');
 			$("#txtFechaCita").focus();
 		}
-		
+		/*
 		if (band && tramite.cita && $("#txtComentarioCita").val() == ''){
 			band = false;
 			mensajes.log({"mensaje": "Escribe un comentario para el gestor"});
 			$('#tabsServicio a[href="#cita"]').tab('show');
 			$("#txtComentarioCita").focus();
 		}
-		
+		*/
 		if (band && tramite.cita && $("#txtDireccion").val() == ''){
 			band = false;
 			mensajes.log({"mensaje": "Indícanos la dirección donde nos reuniremos"});
@@ -150,6 +151,7 @@ function callSolicitar(tramite, vehiculo){
 		//img.css("background-image", "url(data:image/jpeg;base64," + imageURI + ")");
 		img.attr("src2", imageURI);
 		img.attr("add", 1);
+		img.attr("fotos", img.attr("fotos") + 1);
 		if ($(".imgDoc[add=0]").length == 0 && tramite.cita == 1)
 			$("#panelCita").show();
 	}

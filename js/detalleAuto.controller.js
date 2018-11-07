@@ -137,7 +137,11 @@ function callDetalleAuto(id){
 		$("#winTramite").find("[campo]").show();
 		
 		setDatos($("#winTramite"), tramite);
-		
+		s = '';
+		for(i in tramite.documentacion){
+			s += (s != ''?", ":"") + tramite.documentacion[i].nombre;
+		}
+		$("#winTramite").find("[campo=documentacion]").text(s);
 		if (tramite.documentacion == null || tramite.documentacion == undefined || tramite.documentacion == '')
 			$("#winTramite").find("[campo=documentacion]").hide();
 			
