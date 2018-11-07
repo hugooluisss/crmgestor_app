@@ -55,18 +55,19 @@ function callSolicitar(tramite, vehiculo){
 			doc.find(".btnCamara").click(function(){
 				var el = $(this);
 				navigator.camera.getPicture(function(imageURI){
-					agregarFoto(imageURI, el);
+					console.log(imageURI);
+					//agregarFoto(imageURI, el);
 				}, function(message){
 					alertify.error("Ocurrio un error al obtener la imagen");
 				}, {
-					quality: 100,
-					destinationType: Camera.DestinationType.DATA_URL,
+					quality: 90,
+					destinationType: Camera.DestinationType.FILE_URI,
 					encodingType: Camera.EncodingType.JPEG,
 					targetWidth: 600,
 					targetHeight: 600,
 					correctOrientation: true,
 					allowEdit: false,
-					saveToPhotoAlbum: true
+					saveToPhotoAlbum: false
 				});
 			});
 			
