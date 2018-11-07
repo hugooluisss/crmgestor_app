@@ -56,16 +56,16 @@ function callSolicitar(tramite, vehiculo){
 				var el = $(this);
 				navigator.camera.getPicture(function(imageURI){
 					console.log(imageURI);
-					//agregarFoto(imageURI, el);
+					agregarFoto(imageURI, el);
 				}, function(message){
-					alertify.error("Ocurrio un error al obtener la imagen");
+					alertify.error("Ocurrio un error al obtener la imagen " + message);
 				}, {
 					quality: 90,
-					destinationType: Camera.DestinationType.FILE_URI,
-					encodingType: Camera.EncodingType.JPEG,
+					destinationType: Camera.DestinationType.DATA_URL,
+					encodingType: 0,
 					targetWidth: 600,
 					targetHeight: 600,
-					correctOrientation: true,
+					correctOrientation: false,
 					allowEdit: false,
 					saveToPhotoAlbum: false
 				});
@@ -77,14 +77,14 @@ function callSolicitar(tramite, vehiculo){
 				navigator.camera.getPicture(function(imageURI){
 					agregarFoto(imageURI, el);
 				}, function(message){
-					alertify.error("Ocurrio un error al obtener la imagen");
+					alertify.error("Ocurrio un error al obtener la imagen " + message);
 				}, {
 					quality: 100,
 					destinationType: Camera.DestinationType.DATA_URL,
 					encodingType: Camera.EncodingType.JPEG,
 					targetWidth: 600,
 					targetHeight: 600,
-					correctOrientation: true,
+					correctOrientation: false,
 					allowEdit: false,
 					sourceType: navigator.camera.PictureSourceType.SAVEDPHOTOALBUM
 				});
