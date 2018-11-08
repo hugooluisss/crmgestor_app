@@ -7,6 +7,7 @@ function callSolicitar(tramite, vehiculo){
 	$("#modulo").attr("modulo", "solicitar").html(plantillas["solicitar"]);
 	setPanel($("#modulo"));
 	console.info("Carga finalizada");
+	bandCita = false;
 	/*
 	//$("#panelCita").hide();
 	permissions = cordova.plugins.permissions;
@@ -30,9 +31,28 @@ function callSolicitar(tramite, vehiculo){
 	setDatos($("#modulo"), tramite);
 	$(".tramite").css("background-image", "url(" + server + tramite.icono + ")");
 	jQuery.datetimepicker.setLocale('es');
+	d = new Date;
 	$("#txtFechaCita").datetimepicker({
 		format: "Y-m-d H:i",
-		step: 30
+		allowTimes:['8:00','16:00'],
+		defaultTime: '8:00',
+		timepickerOptions: {
+			defaultTime: '8:00'
+		},
+		onChangeDateTime: function(){
+			$.post(server + "cordenes", {
+				"action": "verificarCita",
+				"fecha": $("#txtFechaCita").val(),
+				"movil": true
+			}, function(resp){
+				if (!resp.band){
+					alert("Ya tenemos una cita reservada en ese horario, intenta en otro");
+					$("#txtFechaCita").val("");
+				}
+				
+				bandCita = resp.band;
+			}, "json");
+		}
 	});
 	
 	var d = new Date();
@@ -87,7 +107,7 @@ function callSolicitar(tramite, vehiculo){
 			$('#tabsServicio a[href="#documentacion"]').tab('show');
 		}
 		
-		if (band && tramite.cita && $("#txtFechaCita").val() == ''){
+		if (band && tramite.cita && $("#txtFechaCita").val() == '' && !bandCita){
 			band = false;
 			mensajes.log({"mensaje": "Indica la fecha para agendar tu cita"});
 			//$('#tabsServicio li:first-child a').tab('show');
