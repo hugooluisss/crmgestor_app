@@ -273,7 +273,7 @@ function callSolicitar(tramite, vehiculo){
 		
 		img.click(function(){
 			var el = $(this);
-			fotos[documentoActual].splice(fotos[documentoActual].(el.attr("indice")), 1);
+			fotos[documentoActual].splice(fotos[documentoActual].indexOf(el.attr("indice")), 1);
 			
 			console.log(fotos[documentoActual]);
 		});
