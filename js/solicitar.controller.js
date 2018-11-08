@@ -263,7 +263,7 @@ function callSolicitar(tramite, vehiculo){
 	function agregarFoto(imageURI){
 		//blockUI();
 		//var img = el.parent().parent();
-		documento.push(imageURI);
+		fotos[documentoActual].push(imageURI);
 		var img = $("<img />", {
 			src: "data:image/jpeg;base64," + imageURI,
 			"indice": fotos[documentoActual].length - 1
