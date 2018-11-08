@@ -84,6 +84,9 @@ TOrden = function(){
 						});
 					}
 				}
+				
+				if (datos.fn.after !== undefined)
+					datos.fn.after(resp);
 				/*
 				$.each(datos.imagenes, function(i, img){
 					contAjax++;
