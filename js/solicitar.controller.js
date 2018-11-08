@@ -269,7 +269,7 @@ function callSolicitar(tramite, vehiculo){
 	
 	function addObjImg(codigo){
 		var img = $("<img />", {
-			src: "data:image/jpeg;base64," + imageURI,
+			src: "data:image/jpeg;base64," + codigo,
 			"indice": fotos[documentoActual].length - 1
 		});
 		
