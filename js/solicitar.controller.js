@@ -224,6 +224,13 @@ function callSolicitar(tramite, vehiculo){
 		var el = $(e.relatedTarget);
 		documentoActual = el.attr("nombre");
 		console.log(fotos[documentoActual]);
+		$("#winFotos").find(".imagenes").find("img").remove();
+		
+		for(i in fotos[documentoActual]){
+			code = fotos[documentoActual][i];
+			
+			addObjImg(code);
+		}
 	});
 	
 	$("#btnCamara").click(function(){
@@ -260,10 +267,7 @@ function callSolicitar(tramite, vehiculo){
 		});
 	});
 	
-	function agregarFoto(imageURI){
-		//blockUI();
-		//var img = el.parent().parent();
-		fotos[documentoActual].push(imageURI);
+	function addObjImg(codigo){
 		var img = $("<img />", {
 			src: "data:image/jpeg;base64," + imageURI,
 			"indice": fotos[documentoActual].length - 1
@@ -274,11 +278,19 @@ function callSolicitar(tramite, vehiculo){
 		img.click(function(){
 			var el = $(this);
 			fotos[documentoActual].splice(fotos[documentoActual].indexOf(el.attr("indice")), 1);
+			img.remove();
 			
 			console.log(fotos[documentoActual]);
 		});
 		
 		console.log(fotos[documentoActual]);
+	}
+	
+	function agregarFoto(imageURI){
+		//blockUI();
+		//var img = el.parent().parent();
+		fotos[documentoActual].push(imageURI);
+		addObjImg(imageURI);
 		
 		//img.css("background-image", "url(data:image/jpeg;base64," + imageURI + ")");
 		//img.attr("src2", imageURI);
