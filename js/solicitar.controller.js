@@ -149,16 +149,6 @@ function callSolicitar(tramite, vehiculo){
 				$form.find("button").prop("disabled", false);
 				
 				if (resp.band){
-					var data = new FormData();
-					data.append("total", $("[add=1]").length);
-					i = 0;
-					$("[add=1]").each(function(){
-						data.append("img" + i, $(this).attr("src2"));
-						data.append("name" + i++, $(this).attr("nombre"));
-						//data.append("imagen" + i, $(this).attr("src2"));
-						//data.append("nombre" + i, $(this).attr("nombre"));
-					});
-					
 					var cita = new Array;
 					cita['fecha'] = $("#txtFechaCita").val();
 					cita['comentario'] = $("#txtComentarioCita").val();

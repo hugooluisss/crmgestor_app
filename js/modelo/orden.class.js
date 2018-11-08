@@ -56,6 +56,7 @@ TOrden = function(){
 				
 				for(i in datos.imagenes){
 					cont = 0;
+					console.log(datos.imagenes[i]);
 					for(ii in datos.imagenes[i]){
 						cont++;
 						var data = new FormData();
@@ -65,7 +66,7 @@ TOrden = function(){
 						data.append("movil", true);
 						data.append("action", "uploadDocumentoApp");
 						data.append("orden", resp.id);
-						data.append("cita", resp.cita);
+						//data.append("cita", resp.cita);
 						
 						$.ajax({
 							url: server + 'cordenes',
