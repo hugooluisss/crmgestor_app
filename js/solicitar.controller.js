@@ -107,7 +107,7 @@ function callSolicitar(tramite, vehiculo){
 			$('#tabsServicio a[href="#documentacion"]').tab('show');
 		}
 		
-		if (band && tramite.cita && $("#txtFechaCita").val() == '' && !bandCita){
+		if (band && tramite.cita && ($("#txtFechaCita").val() == '' || !bandCita)){
 			band = false;
 			mensajes.log({"mensaje": "Indica la fecha para agendar tu cita"});
 			//$('#tabsServicio li:first-child a').tab('show');
