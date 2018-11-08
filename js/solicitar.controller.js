@@ -226,7 +226,7 @@ function callSolicitar(tramite, vehiculo){
 		console.log(fotos[documentoActual]);
 	});
 	
-	doc.find(".btnCamara").click(function(){
+	$("#btnCamara").click(function(){
 		navigator.camera.getPicture(function(imageURI){
 			agregarFoto(imageURI, el);
 		}, function(message){
@@ -243,7 +243,7 @@ function callSolicitar(tramite, vehiculo){
 		});
 	});
 	
-	doc.find(".btnGaleria").click(function(){
+	$("#btnGaleria").click(function(){
 		navigator.camera.getPicture(function(imageURI){
 			agregarFoto(imageURI);
 		}, function(message){
@@ -266,7 +266,8 @@ function callSolicitar(tramite, vehiculo){
 		fotos[documentoActual].push(imageURI);
 		var img = $("<img />", {
 			src: "url(data:image/jpeg;base64," + imageURI + ")",
-			"fotos": img.attr("fotos") + 1
+			"fotos": img.attr("fotos") + 1,
+			"indice": fotos[documentoActual].length
 		});
 		
 		$("#winFotos").find(".imagenes").append(img);
