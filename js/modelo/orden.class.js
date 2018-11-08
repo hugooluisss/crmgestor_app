@@ -54,6 +54,36 @@ TOrden = function(){
 					console.log("No se guardó el registro");
 				contAjax = 0;
 				
+				for(i in datos.imagenes){
+					cont = 0;
+					for(ii in datos.imagenes[i]){
+						cont++;
+						var data = new FormData();
+						data.append("img", datos.imagenes[i][ii]);
+						data.append("name", i);
+						data.append("indice", cont);
+						data.append("movil", true);
+						data.append("action", "uploadDocumentoApp");
+						data.append("orden", resp.id);
+						data.append("cita", resp.cita);
+						
+						$.ajax({
+							url: server + 'cordenes',
+							"data": data,
+							processData: false,
+							cahe: false,
+							type: 'POST',
+							method: 'POST',
+							contentType: false,
+							success: function(data){
+								data = jQuery.parseJSON(data);
+								if (data.band == false)
+									console.log("No se guardó la imagen");
+							}
+						});
+					}
+				}
+				/*
 				$.each(datos.imagenes, function(i, img){
 					contAjax++;
 					var data = new FormData();
@@ -86,7 +116,7 @@ TOrden = function(){
 						if (datos.fn.after !== undefined)
 							datos.fn.after(resp);
 					}
-				},5000);
+				},5000);*/
 			}, "json");
 	};
 	
