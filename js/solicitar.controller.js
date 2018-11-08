@@ -160,7 +160,7 @@ function callSolicitar(tramite, vehiculo){
 						"tramite": tramite.idTramite,
 						"carro": vehiculo.idAuto,
 						"observaciones": $("#txtComentarios").val(),
-						"imagenes": data,
+						"imagenes": fotos,
 						"cita": cita,
 						"imagenes": fotos,
 						"direccion": $("#txtDireccion").val(),
