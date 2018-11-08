@@ -263,13 +263,22 @@ function callSolicitar(tramite, vehiculo){
 	function agregarFoto(imageURI){
 		//blockUI();
 		//var img = el.parent().parent();
-		fotos[documentoActual].push(imageURI);
+		documento.push(imageURI);
 		var img = $("<img />", {
 			src: "data:image/jpeg;base64," + imageURI,
-			"indice": fotos[documentoActual].length
+			"indice": fotos[documentoActual].length - 1
 		});
 		
 		$("#winFotos").find(".imagenes").append(img);
+		
+		img.click(function(){
+			var el = $(this);
+			fotos[documentoActual].splice(fotos[documentoActual].(el.attr("indice")), 1);
+			
+			console.log(fotos[documentoActual]);
+		});
+		
+		console.log(fotos[documentoActual]);
 		
 		//img.css("background-image", "url(data:image/jpeg;base64," + imageURI + ")");
 		//img.attr("src2", imageURI);
