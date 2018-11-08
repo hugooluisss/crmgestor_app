@@ -228,7 +228,7 @@ function callSolicitar(tramite, vehiculo){
 	
 	$("#btnCamara").click(function(){
 		navigator.camera.getPicture(function(imageURI){
-			agregarFoto(imageURI, el);
+			agregarFoto(imageURI);
 		}, function(message){
 			alertify.error("Ocurrio un error al obtener la imagen " + message);
 		}, {
