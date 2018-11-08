@@ -266,7 +266,6 @@ function callSolicitar(tramite, vehiculo){
 		fotos[documentoActual].push(imageURI);
 		var img = $("<img />", {
 			src: "url(data:image/jpeg;base64," + imageURI + ")",
-			"fotos": img.attr("fotos") + 1,
 			"indice": fotos[documentoActual].length
 		});
 		
