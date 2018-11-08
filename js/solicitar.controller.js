@@ -74,7 +74,14 @@ function callSolicitar(tramite, vehiculo){
 	
 	$("#btnPagar").click(function(){
 		var band = true;
-		if ($("[add=0]").length > 0){
+		var bandDoc = true;
+		for (i in tramite.documentacion){
+			if (tramite.documentacion[i].necesario == 1 && fotos[tramite.documentacion[i].nombre].length == 0)
+				bandDoc = false;
+		}
+		
+		
+		if (!bandDoc){
 			band = false;
 			mensajes.log({"mensaje": "Agrega las fotografías de tu documentación"});
 			$('#tabsServicio a[href="#documentacion"]').tab('show');
@@ -231,6 +238,18 @@ function callSolicitar(tramite, vehiculo){
 			
 			addObjImg(code);
 		}
+	});
+	
+	$('#winFotos').on('hide.bs.modal', function(e){
+		$("li.documento").each(function(){
+			var el = $(this);
+			if (fotos[el.attr("nombre")].length > 0)
+				el.attr("add", 1);
+			else
+				el.attr("add", 0);
+		});
+		
+		console.log("Fotos");
 	});
 	
 	$("#btnCamara").click(function(){
