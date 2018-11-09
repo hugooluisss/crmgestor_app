@@ -76,6 +76,8 @@ function callSolicitar(tramite, vehiculo){
 			$(".documentos").append(doc);
 			doc.find("[campo=nombre]").text(objDoc.nombre);
 			doc.attr("nombre", objDoc.nombre);
+			
+			if (objDoc.necesario == 0) doc.find(".requerido").hide();
 		}
 	}
 	console.info(fotos);
@@ -241,6 +243,7 @@ function callSolicitar(tramite, vehiculo){
 		var el = $(e.relatedTarget);
 		documentoActual = el.attr("nombre");
 		console.log(fotos[documentoActual]);
+		$('#winFotos').find("[campo=nombre]").text(documentoActual);
 		$("#winFotos").find(".imagenes").find("img").remove();
 		
 		for(i in fotos[documentoActual]){
