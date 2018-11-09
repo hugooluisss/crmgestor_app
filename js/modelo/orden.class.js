@@ -56,7 +56,7 @@ TOrden = function(){
 				
 				for(i in datos.imagenes){
 					cont = 0;
-					console.log(datos.imagenes[i]);
+					contAjax++;
 					for(ii in datos.imagenes[i]){
 						cont++;
 						var data = new FormData();
@@ -85,8 +85,13 @@ TOrden = function(){
 					}
 				}
 				
-				if (datos.fn.after !== undefined)
-					datos.fn.after(resp);
+				temporizador = setInterval(function(){
+					if (contAjax >= datos.imagenes.length){
+						clearInterval(temporizador);
+						if (datos.fn.after !== undefined)
+							datos.fn.after(resp);
+					}
+				},5000);
 				/*
 				$.each(datos.imagenes, function(i, img){
 					contAjax++;

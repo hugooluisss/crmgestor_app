@@ -46,7 +46,7 @@ function callSolicitar(tramite, vehiculo){
 				"movil": true
 			}, function(resp){
 				if (!resp.band){
-					alert("Ya tenemos una cita reservada en ese horario, intenta en otro");
+					mensajes.alert({"mensaje": "Ya tenemos una cita reservada en ese horario, intenta en otro", "titulo": "Horario ocupado"});
 					$("#txtFechaCita").val("");
 				}
 				
@@ -182,11 +182,9 @@ function callSolicitar(tramite, vehiculo){
 						"tramite": tramite.idTramite,
 						"carro": vehiculo.idAuto,
 						"observaciones": $("#txtComentarios").val(),
-						"imagenes": fotos,
 						"cita": cita,
 						"imagenes": fotos,
 						"direccion": $("#txtDireccion").val(),
-						"action": "add",
 						"fn": {
 							before: function(){
 								$form.find("button").prop("disabled", true); 
