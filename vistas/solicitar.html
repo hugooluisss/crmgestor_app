@@ -5,7 +5,7 @@
 	</div>
 </div>
 
-<ul class="nav nav-justified nav-tabs nav-red" id="tabsServicio" role="tablist">
+<ul class="nav nav-justified nav-tabs nav-red" id="tabsServicio" role="tablist" data-tabs="tabs">
 	<li class="nav-item">
 		<a class="nav-link" id="documentacion-tab" data-toggle="tab" href="#documentacion" role="tab" aria-controls="documentacion" aria-selected="true">Documentación</a>
 	</li>
@@ -26,6 +26,8 @@
 			<p>Para iniciar tu trámite es necesario que nos envíes foto de lo siguiente</p>
 			
 			<ul class="documentos"></ul>
+			
+			<button id="btnNextOfDocumentos" class="btn btn-regresar"><i class="fa fa-3x fa-chevron-circle-right" aria-hidden="true"></i></button>
 		</div>
 	</div>
 	<div class="tab-pane fade" id="cita" role="tabpanel" aria-labelledby="profile-tab">
@@ -53,6 +55,7 @@
 				</div>
 				<br />
 			</form>
+			<button id="btnNextOfCita" class="btn btn-regresar"><i class="fa fa-3x fa-chevron-circle-right" aria-hidden="true"></i></button>
 		</div>
 	</div>
 	<div class="tab-pane fade" id="confirmar" role="tabpanel" aria-labelledby="profile-tab">
@@ -66,7 +69,7 @@
 	</div>
 </div>
 
-<button id="btnAtras" class="btn btn-regresar"><i class="fa fa-3x fa-chevron-circle-left" aria-hidden="true"></i></button>
+<!--<button id="btnAtras" class="btn btn-regresar"><i class="fa fa-3x fa-chevron-circle-left" aria-hidden="true"></i></button>-->
 
 <form onsubmit="javascript: return false" method="post" id="frmPago" name="frmPago" action="">
 	<div id="winPago" class="modal" tabindex="-1" role="dialog">

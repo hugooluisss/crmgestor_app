@@ -92,6 +92,16 @@ function callSolicitar(tramite, vehiculo){
 	}
 	
 	$('#tabsServicio li:first-child a').tab('show');
+	$("#btnNextOfDocumentos").click(function(){
+		if (tramite.cita == 1)
+			$('#tabsServicio a[href=#cita]').tab('show');
+		else
+			$('#tabsServicio a[href=#confirmar]').tab('show');
+	});
+	
+	$("#btnNextOfCita").click(function(){
+		$('#tabsServicio a[href=#cita]').tab('show');
+	});
 	
 	
 	$("#btnPagar").click(function(){
