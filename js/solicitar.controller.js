@@ -113,7 +113,7 @@ function callSolicitar(tramite, vehiculo){
 	});
 	
 	$("#btnNextOfCita").click(function(){
-		$('#tabsServicio a[href=#cita]').tab('show');
+		$('#tabsServicio a[href=#confirmar]').tab('show');
 	});
 	
 	
