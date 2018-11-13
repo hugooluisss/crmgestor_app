@@ -309,14 +309,14 @@ function callSolicitar(tramite, vehiculo){
 		}, function(message){
 			alertify.error("Ocurrio un error al obtener la imagen " + message);
 		}, {
-			quality: 100,
+			quality: 90,
 			destinationType: Camera.DestinationType.DATA_URL,
 			encodingType: Camera.EncodingType.JPEG,
 			targetWidth: 600,
 			targetHeight: 600,
 			correctOrientation: false,
 			allowEdit: false,
-			sourceType: navigator.camera.PictureSourceType.SAVEDPHOTOALBUM
+			sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
 		});
 	});
 	
