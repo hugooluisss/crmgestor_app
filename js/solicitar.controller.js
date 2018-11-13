@@ -31,29 +31,6 @@ function callSolicitar(tramite, vehiculo){
 	setDatos($("#modulo"), tramite);
 	$(".tramite").css("background-image", "url(" + server + tramite.icono + ")");
 	jQuery.datetimepicker.setLocale('es');
-	d = new Date;
-	$("#txtFechaCita").datetimepicker({
-		format: "Y-m-d H:i",
-		allowTimes:['8:00','16:00'],
-		defaultTime: '8:00',
-		timepickerOptions: {
-			defaultTime: '8:00'
-		},
-		onChangeDateTime: function(){
-			$.post(server + "cordenes", {
-				"action": "verificarCita",
-				"fecha": $("#txtFechaCita").val(),
-				"movil": true
-			}, function(resp){
-				if (!resp.band){
-					mensajes.alert({"mensaje": "Ya tenemos una cita reservada en ese horario, intenta en otro", "titulo": "Horario ocupado"});
-					$("#txtFechaCita").val("");
-				}
-				
-				bandCita = resp.band;
-			}, "json");
-		}
-	});
 	
 	var d = new Date();
 	fin = d.getFullYear() + 10;
@@ -89,6 +66,41 @@ function callSolicitar(tramite, vehiculo){
 	if (tramite.cita == 0){
 		$("#cita").remove();
 		$("#cita-tab").parent().remove();
+	}else{
+		d = new Date;
+		
+		$.post("cvariables", {
+			"id": "horarios",
+			"movil": true,
+		}, function(resp){
+			var horarios = resp.valor.split(",");
+			var defHorarios = [];
+			for (i in horarios){
+				defHorarios.push(horarios[i].trim());
+			}
+			$("#txtFechaCita").datetimepicker({
+				format: "Y-m-d H:i",
+				allowTimes:defHorarios,
+				defaultTime: horarios[0],
+				timepickerOptions: {
+					defaultTime: '8:00'
+				},
+				onChangeDateTime: function(){
+					$.post(server + "cordenes", {
+						"action": "verificarCita",
+						"fecha": $("#txtFechaCita").val(),
+						"movil": true
+					}, function(resp){
+						if (!resp.band){
+							mensajes.alert({"mensaje": "Ya tenemos una cita reservada en ese horario, intenta en otro", "titulo": "Horario ocupado"});
+							$("#txtFechaCita").val("");
+						}
+						
+						bandCita = resp.band;
+					}, "json");
+				}
+			});
+		},"json");
 	}
 	
 	$('#tabsServicio li:first-child a').tab('show');
