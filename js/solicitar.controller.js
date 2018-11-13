@@ -69,8 +69,9 @@ function callSolicitar(tramite, vehiculo){
 	}else{
 		d = new Date;
 		
-		$.post("cvariables", {
+		$.post(server + "cvariables", {
 			"id": "horarios",
+			"action": "getVariable",
 			"movil": true,
 		}, function(resp){
 			var horarios = resp.valor.split(",");
