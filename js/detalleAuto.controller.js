@@ -16,11 +16,13 @@ function callDetalleAuto(id){
 	fin = d.getFullYear() + ((d.getMonth() > 3)?1:0);
 	console.log(fin);
 	for(anio = 1980 ; anio <= fin ; anio++){
-		$("#selModelo").append($("<option />", {
+		$("#selModelo").prepend($("<option />", {
 			value: anio,
 			text: anio
 		}));
 	}
+	
+	$("#selModelo").val(d.getFullYear());
 	
 	$("#txtVence").datetimepicker({
 		format: "Y-m-d",

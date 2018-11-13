@@ -165,12 +165,13 @@ function callSolicitar(tramite, vehiculo){
 	$("#winPago").on('show.bs.modal', function(e){
 		//var tramite = JSON.parse($("#winTramite").attr("datos"));
 		$("#winPago").find("#submitPago").html("Pagar $ " + tramite.precio + " ahora");
-		
+		/*
 		$(".name").val("hugo Santiago");
 		$(".number").val("4242424242424242");
 		$(".cvc").val("121");
 		$(".exp_month").val("11");
 		$(".exp_year").val("2018");
+		*/
 	});
 	
 	$("#winPago").find("#submitPago").click(function(){
