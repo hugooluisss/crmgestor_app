@@ -3,7 +3,7 @@ server = "http://dashboard.nomastenencias.com/";
 //server = "http://localhost/crm_gestor/";
 
 var idUsuario = undefined;
-var publicConekta = "key_FLvB3CMbt6MfrgTs5y7nvxw";
+var publicConekta = "key_Zqr2ZkSGqeYMdaraabxVHww";
 /*
 *
 * Centra verticalmente una ventana modal

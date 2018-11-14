@@ -113,7 +113,7 @@ function callSolicitar(tramite, vehiculo){
 	});
 	
 	$("#btnNextOfCita").click(function(){
-		$('#tabsServicio a[href=#cita]').tab('show');
+		$('#tabsServicio a[href=#confirmar]').tab('show');
 	});
 	
 	
@@ -165,12 +165,13 @@ function callSolicitar(tramite, vehiculo){
 	$("#winPago").on('show.bs.modal', function(e){
 		//var tramite = JSON.parse($("#winTramite").attr("datos"));
 		$("#winPago").find("#submitPago").html("Pagar $ " + tramite.precio + " ahora");
-		
+		/*
 		$(".name").val("hugo Santiago");
 		$(".number").val("4242424242424242");
 		$(".cvc").val("121");
 		$(".exp_month").val("11");
 		$(".exp_year").val("2018");
+		*/
 	});
 	
 	$("#winPago").find("#submitPago").click(function(){
@@ -309,14 +310,14 @@ function callSolicitar(tramite, vehiculo){
 		}, function(message){
 			alertify.error("Ocurrio un error al obtener la imagen " + message);
 		}, {
-			quality: 100,
+			quality: 90,
 			destinationType: Camera.DestinationType.DATA_URL,
 			encodingType: Camera.EncodingType.JPEG,
 			targetWidth: 600,
 			targetHeight: 600,
 			correctOrientation: false,
 			allowEdit: false,
-			sourceType: navigator.camera.PictureSourceType.SAVEDPHOTOALBUM
+			sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
 		});
 	});
 	

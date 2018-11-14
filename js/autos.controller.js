@@ -8,11 +8,13 @@ function callAutos(){
 	d = new Date;
 	
 	for(anio = 1980 ; anio <= d.getFullYear() ; anio++){
-		$("#selModelo").append($("<option />", {
+		$("#selModelo").prepend($("<option />", {
 			value: anio,
 			text: anio
 		}));
 	}
+	
+	$("#selModelo").val(d.getFullYear());
 	
 	$("#txtVence").datetimepicker({
 		format: "Y-m-d",

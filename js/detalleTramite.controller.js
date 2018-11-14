@@ -9,6 +9,15 @@ function callDetalleTramite(tramite){
 	setDatos($("#modulo"), tramite);
 	$("[campo=documentacion]").find("li").remove();
 	for (x in tramite.documentacion) {
-		$("[documentos]").append('<li class="list-group-item">' + tramite.documentacion[x] + '</li>');
+		var li = $("<li>", {
+			"class": "list-group-item",
+			"text": tramite.documentacion[x].nombre
+		});
+		
+		if (tramite.documentacion[x].necesario == 1){
+			li.append(' <span class="text-danger">Requerido</span>');
+		}
+		
+		$("[documentos]").append(li);
 	}
 }
