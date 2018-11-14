@@ -166,4 +166,6 @@ function callPanel(panel){
 		default:
 			console.info("Panel no encontrado");
 	}
+	
+	$(".modal-backdrop").remove();
 }
