@@ -68,6 +68,7 @@ function callSolicitar(tramite, vehiculo){
 	if (tramite.cita == 0){
 		$("#cita").remove();
 		$("#cita-tab").parent().remove();
+		bandCita = 1;
 	}else{
 		d = new Date;
 		
@@ -134,7 +135,7 @@ function callSolicitar(tramite, vehiculo){
 			$('#tabsServicio a[href="#documentacion"]').tab('show');
 		}
 		
-		if (band && tramite.cita && ($("#txtFechaCita").val() == '' || !bandCita)){
+		if (band && tramite.cita == 1 && ($("#txtFechaCita").val() == '' || !bandCita)){
 			band = false;
 			mensajes.log({"mensaje": "Indica la fecha para agendar tu cita"});
 			//$('#tabsServicio li:first-child a').tab('show');
@@ -149,7 +150,7 @@ function callSolicitar(tramite, vehiculo){
 			$("#txtComentarioCita").focus();
 		}
 		*/
-		if (band && tramite.cita && $("#txtDireccion").val() == ''){
+		if (band && tramite.cita == 1 && $("#txtDireccion").val() == ''){
 			band = false;
 			mensajes.log({"mensaje": "Indícanos la dirección donde nos reuniremos"});
 			$('#tabsServicio a[href="#cita"]').tab('show');
