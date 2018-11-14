@@ -238,7 +238,7 @@ function callSolicitar(tramite, vehiculo){
 										}
 									});
 								}else
-									mensajes.alert({"titulo": "Error", "mensaje": "No se pudo procesar el pago"});
+									mensajes.alert({"titulo": "Error", "mensaje": resp.mensaje == ''?"No se pudo procesar el pago":resp.mensaje});
 							}
 						}
 					});
