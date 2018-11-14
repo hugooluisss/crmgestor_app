@@ -88,7 +88,10 @@ var app = {
 		
 		document.addEventListener("backbutton", function(){
 			if (pantallas[pantallas.length-1].panel == 'autos'){
-				alert("Estoy en home");
+				mensajes.confirm({"titulo": "Salir", "mensaje": "¿Seguro de salir?", "botones": ["Salir", "Cancelar"], "funcion": function(resp){
+					if (resp == 1)
+						callLogout();
+				}});
 			}else{
 				pantallas.pop();
 				var el = pantallas[pantallas.length-1];
@@ -100,6 +103,7 @@ var app = {
 					case 'detalleAuto': callDetalleAuto(el.params); break;
 					case 'detalleTramite': callDetalleTramite(el.params); break;
 					case 'solicitar': callSolicitar(el.params, el.params2); break;
+					case 'tramites': callTramites(); break;
 				}
 				pantallas.pop();
 			}

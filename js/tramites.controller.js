@@ -2,6 +2,7 @@ function callTramites(){
 	console.info("Llamando a tramites");
 	$("#tituloModulo").html("");
 	$("#modulo").attr("modulo", "tramites").html(plantillas["tramites"]);
+	pantallas.push({"panel": "tramites", "params": ""});
 	setPanel($("#modulo"));
 	console.info("Carga de trámites finalizada");
 	
