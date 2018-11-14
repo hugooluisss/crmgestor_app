@@ -238,12 +238,12 @@ function callSolicitar(tramite, vehiculo){
 										}
 									});
 								}else
-									mensajes.alert({"titulo": "Error", "mensaje": resp.mensaje == ''?"No se pudo procesar el pago":resp.mensaje});
+									mensajes.alert({"titulo": "Error", "mensaje": resp.mensaje});
 							}
 						}
 					});
 				}else{
-					mensajes.alert({"titulo": "Error", "mensaje": "No pudo ser procesado el pago"});
+					mensajes.alert({"titulo": "Error", "mensaje": resp.mensaje == ''?"No se pudo procesar el pago":resp.mensaje});
 					unBlockUI();
 				}
 			}, "json");
