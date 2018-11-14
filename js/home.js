@@ -18,7 +18,7 @@
  */
 var objUsuario = null;
 var plantillas = {};
-var pantallas = [];
+var pantallas = ["home"];
 var app = {
 	// Application Constructor
 	initialize: function() {
