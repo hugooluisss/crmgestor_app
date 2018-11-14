@@ -1,5 +1,6 @@
 function callDetalleTramite(tramite){
 	console.info("Llamando a detalle del tramite");
+	pantallas.push({"panel": "detalleTramite", "params": tramite});
 	$("#modulo").attr("modulo", "detalleTramite").html(plantillas["detalleTramite"]);
 	setPanel($("#modulo"));
 	$(".modal-backdrop").remove();

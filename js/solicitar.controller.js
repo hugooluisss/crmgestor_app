@@ -1,4 +1,6 @@
 function callSolicitar(tramite, vehiculo){
+	pantallas.push({"panel": "solicitar", "params": tramite, "params2": vehiculo});
+	
 	var fotos = [];
 	var documentoActual = "";
 	console.log(tramite, vehiculo);

@@ -1,5 +1,6 @@
 function callDetalleAuto(id){
 	console.info("Llamando a detalle del auto");
+	pantallas.push({"panel": "detalleAuto", "params": id});
 	$("#modulo").attr("modulo", "detalleAuto").html(plantillas["detalleAuto"]);
 	setPanel($("#modulo"));
 	$(".modal-backdrop").remove();

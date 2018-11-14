@@ -1,4 +1,7 @@
 function callAutos(){
+	for(i in pantallas)
+		pantallas.pop();
+	pantallas.push({"panel": "autos", "params": ""});
 	console.info("Llamando a Autos");
 	$("#tituloModulo").html("Mis Automóviles");
 	$("#modulo").attr("modulo", "autos").html(plantillas["autos"]);

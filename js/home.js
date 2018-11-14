@@ -18,7 +18,8 @@
  */
 var objUsuario = null;
 var plantillas = {};
-var pantallas = ["home"];
+var pantallas = [];
+
 var app = {
 	// Application Constructor
 	initialize: function() {
@@ -86,8 +87,23 @@ var app = {
 		});
 		
 		document.addEventListener("backbutton", function(){
-			if (pantallas[pantallas.length-1] == 'home')
+			if (pantallas[pantallas.length-1].panel == 'autos'){
 				alert("Estoy en home");
+			}else{
+				pantallas.pop();
+				var el = pantallas[pantallas.length-1];
+				switch(el.panel){
+					case 'autos': 
+						console.log("reiniciado");
+						callAutos(); 
+					break;
+					case 'detalleAuto': callDetalleAuto(el.params); break;
+					case 'detalleTramite': callDetalleTramite(el.params); break;
+					case 'solicitar': callSolicitar(el.params, el.params2); break;
+				}
+				pantallas.pop();
+			}
+			
 		}, false);
 	}
 };
