@@ -2,7 +2,7 @@
 <!-- config.xml reference: https://build.phonegap.com/docs/config-xml -->
 	<widget xmlns:android="http://schemas.android.com/apk/res/android"
 		xmlns:gap = "http://phonegap.com/ns/1.0"
-		id    = "com.nomastenencias.dashboard"
+		id    = "com.nomastenencias.app"
 		version  = "1.0.0">  
 
 		<name>No mas tenencias</name>
