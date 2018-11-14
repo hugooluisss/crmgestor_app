@@ -18,6 +18,7 @@
  */
 var objUsuario = null;
 var plantillas = {};
+var pantallas = [];
 var app = {
 	// Application Constructor
 	initialize: function() {
@@ -83,6 +84,11 @@ var app = {
 				}
 			}
 		});
+		
+		document.addEventListener("backbutton", function(){
+			if (pantallas[pantallas.length-1] == 'home')
+				alert("Estoy en home");
+		}, false);
 	}
 };
 
