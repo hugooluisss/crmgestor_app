@@ -95,6 +95,7 @@ var app = {
 			}else{
 				pantallas.pop();
 				var el = pantallas[pantallas.length-1];
+				$(".modal-backdrop").remove();
 				switch(el.panel){
 					case 'autos': 
 						console.log("reiniciado");
@@ -166,6 +167,4 @@ function callPanel(panel){
 		default:
 			console.info("Panel no encontrado");
 	}
-	
-	$(".modal-backdrop").remove();
 }
