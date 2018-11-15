@@ -8,6 +8,7 @@ TCita = function(){
 				"id": datos.id,
 				"fecha": datos.fecha,
 				"descripcion": datos.descripcion,
+				"direccion": datos.direccion,
 				"orden": datos.orden,
 				"action": "add",
 				"movil": true

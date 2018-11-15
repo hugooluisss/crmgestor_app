@@ -68,10 +68,11 @@ function callSolicitar(tramite, vehiculo){
 	if (tramite.cita == 0){
 		$("#cita").remove();
 		$("#cita-tab").parent().remove();
+		
 		bandCita = 1;
 	}else{
 		d = new Date;
-		
+		$(".direccionEnvio").hide();
 		$.post(server + "cvariables", {
 			"id": "horarios",
 			"action": "getVariable",
@@ -129,7 +130,7 @@ function callSolicitar(tramite, vehiculo){
 		}
 		
 		
-		if (!bandDoc){
+		if (!bandDoc && false){
 			band = false;
 			mensajes.log({"mensaje": "Agrega las fotografías de tu documentación"});
 			$('#tabsServicio a[href="#documentacion"]').tab('show');
@@ -150,10 +151,17 @@ function callSolicitar(tramite, vehiculo){
 			$("#txtComentarioCita").focus();
 		}
 		*/
-		if (band && tramite.cita == 1 && $("#txtDireccion").val() == ''){
+		if (band && tramite.cita == 1 && $("#txtDireccionCita").val() == ''){
 			band = false;
 			mensajes.log({"mensaje": "Indícanos la dirección donde nos reuniremos"});
 			$('#tabsServicio a[href="#cita"]').tab('show');
+			$("#txtDireccionCita").focus();
+		}
+		
+		if (band && tramite.cita == 0 && $("#txtDireccion").val() == ''){
+			band = false;
+			mensajes.log({"mensaje": "Indícanos la dirección donde te entregaremos tus documentos"});
+			$('#tabsServicio a[href="#confirmar"]').tab('show');
 			$("#txtDireccion").focus();
 		}
 		
@@ -187,7 +195,7 @@ function callSolicitar(tramite, vehiculo){
 		blockUI("Estamos procesando el pago");
 		Conekta.Token.create($form, function(token){
 			$("#conektaTokenId").val(token.id);
-			
+			console.log("Enviando para token");
 			$.post(server + 'cpagos', {
 				"token": token.id,
 				"cliente": objUsuario.idUsuario,
@@ -201,6 +209,7 @@ function callSolicitar(tramite, vehiculo){
 					var cita = new Array;
 					cita['fecha'] = $("#txtFechaCita").val();
 					cita['comentario'] = $("#txtComentarioCita").val();
+					cita['direccion'] = $("#txtDireccionCita").val();
 					
 					console.log(cita);
 					var orden = new TOrden;
@@ -209,6 +218,7 @@ function callSolicitar(tramite, vehiculo){
 						"tramite": tramite.idTramite,
 						"carro": vehiculo.idAuto,
 						"observaciones": $("#txtComentarios").val(),
+						"direccion": $("#txtDireccion").val(),
 						"cita": cita,
 						"imagenes": fotos,
 						"direccion": $("#txtDireccion").val(),
