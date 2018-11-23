@@ -130,7 +130,7 @@ function callSolicitar(tramite, vehiculo){
 		}
 		
 		
-		if (!bandDoc && false){
+		if (!bandDoc){
 			band = false;
 			mensajes.log({"mensaje": "Agrega las fotografías de tu documentación"});
 			$('#tabsServicio a[href="#documentacion"]').tab('show');
