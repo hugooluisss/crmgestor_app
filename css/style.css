@@ -117,11 +117,10 @@ body[layout="home"] [modulo=detalleAuto] .icono {
   width: 100%;
 }
 body[layout="home"] [modulo=detalleAuto] .automovil {
-  background-image: url("../img/automovil.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position-y: bottom;
-  color: white;
+  color: #B40404;
   border-bottom: 5px solid #B40404;
 }
 body[layout="home"] [modulo=detalleAuto] #listaTramites {
@@ -194,12 +193,11 @@ body[layout="home"] [modulo=detalleOrden] .proximaCita {
   font-size: 10px;
 }
 body[layout="home"] [modulo=autos] .automovil {
-  background-image: url("../img/automovil.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position-y: bottom;
   height: 120px;
-  color: white;
+  color: #B40404;
   vertical-align: bottom;
   border-bottom: 5px solid #B40404;
   border-radius: 0px 0px 0px 0px;

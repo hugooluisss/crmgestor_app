@@ -26,7 +26,7 @@ function callLogin(){
 				$("#winInicioSesion").modal();
 		}, $("#frmLogin").find("#txtUsuario").val());
 	});
-	
+		
 	$("#frmLogin").find("#txtUsuario").focus();
 	$("#frmLogin").validate({
 		debug: true,
