@@ -10,7 +10,7 @@ body[layout="login"] {
   background-size: contain;
 }
 body[layout="login"] .logo {
-  margin-top: 80px;
+  margin-top: 50px;
   width: 100%;
   max-width: 450px;
 }
