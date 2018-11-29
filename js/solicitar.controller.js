@@ -196,6 +196,7 @@ function callSolicitar(tramite, vehiculo){
 		Conekta.Token.create($form, function(token){
 			$("#conektaTokenId").val(token.id);
 			console.log("Enviando para token");
+			unBlockUI();
 			$.post(server + 'cpagos', {
 				"token": token.id,
 				"cliente": objUsuario.idUsuario,
@@ -204,7 +205,7 @@ function callSolicitar(tramite, vehiculo){
 				"action": "addPagoConekta"
 			}, function(resp){
 				$form.find("button").prop("disabled", false);
-				
+				blockUI("Estamos procesando el pago");
 				if (resp.band){
 					var cita = new Array;
 					cita['fecha'] = $("#txtFechaCita").val();
