@@ -36,7 +36,7 @@ TUsuario = function(chofer){
 		
 		var usuario = datos.idUsuario == undefined?self.idUsuario:datos.idUsuario;
 		
-		$.post(server + 'ctransportistas', {
+		$.post(server + 'cclientes', {
 			"id": usuario,
 			"action": 'getData',
 			"movil": true

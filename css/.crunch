@@ -35,6 +35,7 @@
 				"layout/modulos/detalleTramite.less",
 				"layout/modulos/home.less",
 				"layout/modulos/ordenes.less",
+				"layout/modulos/perfil.less",
 				"layout/modulos/solicitar.less",
 				"layout/modulos/tramites.less",
 				"variables.less"

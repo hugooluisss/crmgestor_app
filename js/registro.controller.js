@@ -66,12 +66,12 @@ function callRegistro(){
 							form.find("[type=submit]").prop("disabled", true);
 						},
 						after: function(data){
+							form.find("[type=submit]").prop("disabled", false);
 							if (data.band == false){
 								mensajes.alert({
 									"mensaje": "No pudimos registrar tu cuenta",
 									"titulo": "Registro"
 								});
-								form.find("[type=submit]").prop("disabled", false);
 							}else{
 								mensajes.log({
 									"mensaje": "Muchas gracias, tu registro está completo... ahora puedes iniciar sesión"

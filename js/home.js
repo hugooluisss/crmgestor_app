@@ -130,6 +130,7 @@ $(document).ready(function(){
 	plantillas["documento"] = "";
 	plantillas["tramites"] = "";
 	plantillas["detalleTramite"] = "";
+	plantillas["perfil"] = "";
 	/*
 	plantillas["ordenes"] = "";
 	plantillas["orden"] = "";
@@ -160,6 +161,9 @@ function callPanel(panel){
 		break;
 		case 'tramites':
 			callTramites();
+		break;
+		case 'perfil':
+			callPerfil();
 		break;
 		case 'logout':
 			callLogout();
