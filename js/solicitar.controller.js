@@ -44,7 +44,7 @@ function callSolicitar(tramite, vehiculo){
 	$.each(tramite.documentacion, function(i, documento){
 	//for(i in tramite.documentacion){
 		var doc = $(plantillas["documento"]);
-		objDoc = tramite.documentacion[i];
+		var objDoc = tramite.documentacion[i];
 		
 		setDatos(doc, objDoc);
 		if (objDoc != ''){
