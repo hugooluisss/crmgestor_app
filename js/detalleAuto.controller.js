@@ -118,9 +118,10 @@ function callDetalleAuto(id){
 		"movil": true,
 		"json": true
 	}, function(tramites){
-		var pl;
-		for(i in tramites){
-			pl = $(plantillas["tramite"]);
+		//var pl;
+		$.each(tramites, function(i, tramite){
+		//for(i in tramites){
+			var pl = $(plantillas["tramite"]);
 			
 			pl.attr("datos", tramites[i].json);
 			setDatos(pl, tramites[i]);
@@ -130,13 +131,18 @@ function callDetalleAuto(id){
 			pl.attr("datos", tramites[i].json);
 			
 			$("#listaTramites").append(pl);
-		}
+			pl.click(function(){
+				$("#winTramite").attr("datos", tramites[i].json);
+				$("#winTramite").modal();
+			});
+		});
 	}, "json");
 	
 	
 	$("#winTramite").on('show.bs.modal', function(e){
-		var tramite = JSON.parse($(e.relatedTarget).attr("datos"));
-		$("#winTramite").attr("datos", $(e.relatedTarget).attr("datos"));
+		//var tramite = JSON.parse($(e.relatedTarget).attr("datos"));
+		$("#winTramite").attr("datos", $("#winTramite").attr("datos"));
+		var tramite = JSON.parse($("#winTramite").attr("datos"));
 		$("#winTramite").find("[campo]").show();
 		
 		setDatos($("#winTramite"), tramite);

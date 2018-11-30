@@ -41,8 +41,9 @@ function callSolicitar(tramite, vehiculo){
 		$(".exp_year").append($('<option value="' + anio + '">' + anio + '</option>'));
 	
 	cont = 0;
-	for(i in tramite.documentacion){
-		doc = $(plantillas["documento"]);
+	$.each(tramite.documentacion, function(i, documento){
+	//for(i in tramite.documentacion){
+		var doc = $(plantillas["documento"]);
 		objDoc = tramite.documentacion[i];
 		
 		setDatos(doc, objDoc);
@@ -55,12 +56,16 @@ function callSolicitar(tramite, vehiculo){
 			$(".documentos").append(doc);
 			doc.find("[campo=nombre]").text(objDoc.nombre);
 			doc.attr("nombre", objDoc.nombre);
+			doc.click(function(){
+				$("#winFotos").attr("nombre", objDoc.nombre);
+				$("#winFotos").modal();
+			});
 			
 			if (objDoc.necesario == 0) doc.find(".requerido").hide();
 		}
-	}
-	console.info(fotos);
-	if(cont == 0){
+	});
+	
+	if(tramite.documentacion.length == 0){
 		$("#documentacion").remove();
 		$("#documentacion-tab").parent().remove();
 	}
@@ -276,7 +281,7 @@ function callSolicitar(tramite, vehiculo){
 	
 	
 	$('#winFotos').on('show.bs.modal', function(e){
-		var el = $(e.relatedTarget);
+		var el = $("#winFotos");
 		documentoActual = el.attr("nombre");
 		console.log(fotos[documentoActual]);
 		$('#winFotos').find("[campo=documento]").text(documentoActual);
