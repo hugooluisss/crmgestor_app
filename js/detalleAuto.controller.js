@@ -113,14 +113,13 @@ function callDetalleAuto(id){
 		}
 	});
 	
-	
+	/*
 	$.post(server + "listatramitesapp", {
 		"movil": true,
 		"json": true
 	}, function(tramites){
 		//var pl;
 		$.each(tramites, function(i, tramite){
-		//for(i in tramites){
 			var pl = $(plantillas["tramite"]);
 			
 			pl.attr("datos", tramites[i].json);
@@ -137,6 +136,8 @@ function callDetalleAuto(id){
 			});
 		});
 	}, "json");
+	*/
+	
 	
 	
 	$("#winTramite").on('show.bs.modal', function(e){
